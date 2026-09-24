@@ -807,6 +807,281 @@
       .highlight-list li { font-size: 1.05rem; margin-bottom: 0.6rem; }
       .card-body { font-size: 1.05rem; }
     }
+
+    /* =========================================================================
+       COMPREHENSIVE MOBILE & TABLET RESPONSIVE SYSTEM (< 900px)
+       ========================================================================= */
+    .mobile-slide-indicator {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      /* Prevent any child element from forcing horizontal overflow */
+      *, *::before, *::after {
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      /* Native mobile viewport filling */
+      html, body {
+        overflow: hidden !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        user-select: auto !important;
+      }
+
+      .deck-container {
+        width: 100% !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        max-height: 100dvh !important;
+        aspect-ratio: unset !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+      }
+
+      .slides-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .slide {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 3.8rem 1rem 4.8rem 1rem !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+      }
+
+      /* Compact, finger-friendly Header */
+      .deck-header {
+        padding: 0.6rem 0.8rem !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+        background: var(--header-bg) !important;
+        backdrop-filter: blur(16px) !important;
+        height: 48px !important;
+      }
+      .brand-title {
+        display: none !important;
+      }
+      .header-controls {
+        gap: 0.35rem !important;
+      }
+      #themeBtn {
+        padding: 5px 8px !important;
+        font-size: 0.72rem !important;
+        max-width: 120px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+      #fullscreenBtn {
+        display: none !important;
+      }
+      .slide-counter {
+        display: none !important; /* Displayed in sticky bottom footer on mobile */
+      }
+
+      /* Compact, thumb-accessible Bottom Bar */
+      .deck-footer {
+        padding: 0.5rem 1rem !important;
+        height: 50px !important;
+        border-top: 1px solid var(--border-subtle) !important;
+        background: var(--footer-bg) !important;
+        backdrop-filter: blur(16px) !important;
+      }
+      .progress-dots {
+        display: none !important;
+      }
+      .mobile-slide-indicator {
+        display: block !important;
+        font-family: var(--font-mono);
+        font-size: 0.80rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        letter-spacing: 0.08em;
+      }
+      .nav-buttons {
+        display: flex !important;
+        gap: 10px !important;
+      }
+      .nav-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.25rem !important;
+      }
+
+      /* Content Area & Stacked Column Grids */
+      .content-area {
+        flex: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        height: auto !important;
+        width: 100% !important;
+        padding-bottom: 1.5rem !important;
+      }
+
+      .grid-2col,
+      .grid-2col-wide-left,
+      .grid-2col-wide-right,
+      .grid-3col,
+      .grid-4col {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        height: auto !important;
+        width: 100% !important;
+      }
+
+      /* Inline Grids conversion on mobile */
+      [style*="grid-template-columns: repeat(4, 1fr)"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        margin-top: 0.8rem !important;
+        width: 100% !important;
+      }
+
+      [style*="grid-template-columns: repeat(3, 1fr)"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.85rem !important;
+        width: 100% !important;
+      }
+
+      [style*="grid-template-columns: 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      /* Allow dual pricing stat boxes on Slide 8 and 24 to stay side-by-side */
+      #transitDetailCard-8 [style*="grid-template-columns: 1fr 1fr"],
+      #transitDetailCard-24 [style*="grid-template-columns: 1fr 1fr"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+
+      /* Typography adjustments for high readability on narrow screens */
+      .slide-eyebrow {
+        font-size: 0.70rem !important;
+        letter-spacing: 0.12em !important;
+        margin-bottom: 0.25rem !important;
+      }
+      h1.slide-title, .slide-title {
+        font-size: 1.55rem !important;
+        line-height: 1.22 !important;
+        letter-spacing: -0.01em !important;
+        margin-bottom: 0.35rem !important;
+        max-width: 100% !important;
+        word-break: break-word !important;
+      }
+      p.slide-subtitle, .slide-subtitle {
+        font-size: 0.88rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0.7rem !important;
+        max-width: 100% !important;
+      }
+      .glass-card {
+        padding: 1.1rem 1rem !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+      }
+      .card-heading {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.35rem !important;
+      }
+      .card-body {
+        font-size: 0.88rem !important;
+        line-height: 1.5 !important;
+      }
+      .highlight-list li {
+        font-size: 0.86rem !important;
+        margin-bottom: 0.45rem !important;
+        line-height: 1.45 !important;
+      }
+      .stat-box {
+        padding: 11px 13px !important;
+        width: 100% !important;
+      }
+      .stat-number {
+        font-size: 1.55rem !important;
+        margin-bottom: 2px !important;
+      }
+      .stat-caption {
+        font-size: 0.72rem !important;
+        letter-spacing: 0.04em !important;
+        line-height: 1.3 !important;
+      }
+
+      /* Editorial Media / Images */
+      .editorial-media {
+        height: 210px !important;
+        min-height: 180px !important;
+        width: 100% !important;
+      }
+      .media-overlay {
+        padding: 1rem !important;
+      }
+      .media-title {
+        font-size: 1.15rem !important;
+      }
+      .media-caption {
+        font-size: 0.80rem !important;
+      }
+
+      /* Waypoint Selector Horizontal Scroll */
+      .waypoint-selector {
+        display: flex !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        flex-wrap: nowrap !important;
+        padding-bottom: 6px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .stage-pill {
+        flex: 0 0 auto !important;
+        font-size: 0.74rem !important;
+        padding: 5px 11px !important;
+      }
+
+      /* Map SVG on Slide 3 */
+      .glass-card svg {
+        max-height: 200px !important;
+        width: 100% !important;
+      }
+
+      /* Transit Option Cards */
+      .transit-option-card {
+        padding: 10px 11px !important;
+        width: 100% !important;
+      }
+      .transit-option-card strong {
+        font-size: 0.86rem !important;
+      }
+      .transit-option-card p {
+        font-size: 0.76rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2457,6 +2732,7 @@
       <div class="progress-dots" id="dotsContainer">
         <!-- 30 Dots dynamically generated -->
       </div>
+      <div class="mobile-slide-indicator" id="mobileSlideIndicator">SLIDE 01 / 30</div>
       
       <div class="nav-buttons">
         <button class="nav-btn" id="prevBtn" title="Previous Slide (←)">‹</button>
@@ -2510,6 +2786,14 @@
         const formattedCurrent = String(currentIndex + 1).padStart(2, '0');
         const formattedTotal = String(totalSlides).padStart(2, '0');
         slideCounter.textContent = `SLIDE ${formattedCurrent} / ${formattedTotal}`;
+
+        const mobileSlideIndicator = document.getElementById('mobileSlideIndicator');
+        if (mobileSlideIndicator) {
+          mobileSlideIndicator.textContent = `SLIDE ${formattedCurrent} / ${formattedTotal}`;
+        }
+
+        // Reset scroll position on current slide so user starts at the top
+        slides[currentIndex].scrollTop = 0;
         
         try {
           history.replaceState(null, '', '#' + (currentIndex + 1));
@@ -2580,21 +2864,29 @@
         }
       });
 
-      // Touch / Swipe Support
+      // Touch / Swipe Support (tuned for mobile vertical scrolling)
       let touchStartX = 0;
       let touchEndX = 0;
+      let touchStartY = 0;
+      let touchEndY = 0;
 
       container.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
       }, { passive: true });
 
       container.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        const threshold = 40;
-        if (touchEndX < touchStartX - threshold) {
-          nextSlide();
-        } else if (touchEndX > touchStartX + threshold) {
-          prevSlide();
+        touchEndY = e.changedTouches[0].screenY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        // Only trigger slide navigation on intentional horizontal swipes, never on vertical scroll
+        if (Math.abs(diffX) > 60 && Math.abs(diffX) > 1.8 * Math.abs(diffY)) {
+          if (diffX < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
         }
       }, { passive: true });
 
