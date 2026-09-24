@@ -753,10 +753,27 @@
       box-shadow: 0 4px 14px rgba(180, 123, 44, 0.12);
     }
 
+    .map-node circle {
+      transition: r 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease, filter 0.25s ease, transform 0.2s ease;
+    }
     .map-node:hover circle {
       transform: scale(1.3);
       transform-origin: center;
-      transition: transform 0.2s ease;
+    }
+    .map-node.active circle {
+      r: 10 !important;
+      stroke: var(--gold-glow) !important;
+      stroke-width: 3.5px !important;
+      filter: drop-shadow(0 0 8px rgba(224, 169, 109, 0.9));
+    }
+    .map-node.active text {
+      font-weight: 800 !important;
+      fill: var(--gold-glow) !important;
+    }
+    .interactive-trail-box {
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
     }
 
     .gmaps-hero-action {
@@ -1208,11 +1225,11 @@
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
                   <span class="card-label" style="margin: 0;">Interactive Trail Corridors</span>
-                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--sand-muted);">CLICK ANY STAGE TO INSPECT</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--sand-muted);">TAP OR SLIDE ALONG TRAIL TO INSPECT</span>
                 </div>
 
                 <!-- Interactive Waypoint Selector Pills -->
-                <div class="waypoint-selector" id="waypointPills" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem;">
+                <div class="waypoint-selector no-swipe" id="waypointPills" data-no-swipe="true" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem;">
                   <button class="stage-pill active" onclick="selectMapStage(0)">All Route</button>
                   <button class="stage-pill" onclick="selectMapStage(1)">1. Milfontes</button>
                   <button class="stage-pill" onclick="selectMapStage(2)">2. Almograve</button>
@@ -1223,8 +1240,8 @@
                 </div>
 
                 <!-- Coastal SVG Schematic Route Graphic -->
-                <div style="background: var(--stat-bg); border-radius: 8px; padding: 1rem; border: 1px solid var(--border-subtle); position: relative; overflow: hidden;">
-                  <svg viewBox="0 0 700 240" style="width: 100%; height: auto; display: block;">
+                <div id="interactiveMapContainer" class="interactive-trail-box no-swipe" data-no-swipe="true" style="background: var(--stat-bg); border-radius: 8px; padding: 1rem; border: 1px solid var(--border-subtle); position: relative; overflow: hidden; touch-action: pan-y;">
+                  <svg id="interactiveTrailSvg" class="no-swipe" data-no-swipe="true" viewBox="0 0 700 240" style="width: 100%; height: auto; display: block; touch-action: pan-y; cursor: pointer;">
                     <defs>
                       <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#0f766e" stop-opacity="0.12" />
@@ -1251,49 +1268,49 @@
 
                     <!-- Waypoint Nodes -->
                     <!-- 00: Porto Covo -->
-                    <g class="map-node" onclick="selectMapStage(0)" style="cursor: pointer;">
+                    <g class="map-node active" data-stage="0" onclick="selectMapStage(0)" style="cursor: pointer;">
                       <circle cx="70" cy="165" r="7" fill="#0f766e" stroke="#fff" stroke-width="2.5" />
                       <text x="70" y="195" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Porto Covo</text>
                       <text x="70" y="210" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--sand-muted)" text-anchor="middle">Trailhead</text>
                     </g>
 
                     <!-- 01: Milfontes -->
-                    <g class="map-node" onclick="selectMapStage(1)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="1" onclick="selectMapStage(1)" style="cursor: pointer;">
                       <circle cx="180" cy="165" r="6" fill="#0f766e" stroke="#fff" stroke-width="2" />
                       <text x="180" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Milfontes</text>
                       <text x="180" y="125" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--teal-ocean)" text-anchor="middle">20 km</text>
                     </g>
 
                     <!-- 02: Almograve -->
-                    <g class="map-node" onclick="selectMapStage(2)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="2" onclick="selectMapStage(2)" style="cursor: pointer;">
                       <circle cx="270" cy="165" r="6" fill="#0f766e" stroke="#fff" stroke-width="2" />
                       <text x="270" y="195" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Almograve</text>
                       <text x="270" y="210" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--teal-ocean)" text-anchor="middle">11 km</text>
                     </g>
 
                     <!-- 03: Zambujeira -->
-                    <g class="map-node" onclick="selectMapStage(3)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="3" onclick="selectMapStage(3)" style="cursor: pointer;">
                       <circle cx="370" cy="165" r="6" fill="#b47b2c" stroke="#fff" stroke-width="2" />
                       <text x="370" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Zambujeira</text>
                       <text x="370" y="125" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--gold-primary)" text-anchor="middle">22 km</text>
                     </g>
 
                     <!-- 04: Odeceixe -->
-                    <g class="map-node" onclick="selectMapStage(4)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="4" onclick="selectMapStage(4)" style="cursor: pointer;">
                       <circle cx="460" cy="165" r="6" fill="#b47b2c" stroke="#fff" stroke-width="2" />
                       <text x="460" y="195" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Odeceixe</text>
                       <text x="460" y="210" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--gold-primary)" text-anchor="middle">18 km</text>
                     </g>
 
                     <!-- 05: Aljezur -->
-                    <g class="map-node" onclick="selectMapStage(5)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="5" onclick="selectMapStage(5)" style="cursor: pointer;">
                       <circle cx="540" cy="165" r="7" fill="#c2410c" stroke="#fff" stroke-width="2.5" />
                       <text x="540" y="195" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="var(--text-title)" text-anchor="middle">Aljezur</text>
                       <text x="540" y="210" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--terracotta)" text-anchor="middle">Trek Finish</text>
                     </g>
 
                     <!-- 06: Lisbon -->
-                    <g class="map-node" onclick="selectMapStage(6)" style="cursor: pointer;">
+                    <g class="map-node" data-stage="6" onclick="selectMapStage(6)" style="cursor: pointer;">
                       <circle cx="640" cy="60" r="8" fill="#b47b2c" stroke="#fff" stroke-width="2.5" />
                       <text x="640" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="var(--text-title)" text-anchor="middle">Lisboa</text>
                       <text x="640" y="27" font-family="'JetBrains Mono', monospace" font-size="9" fill="var(--gold-primary)" text-anchor="middle">AlmaLusa Palace</text>
@@ -2864,18 +2881,35 @@
         }
       });
 
-      // Touch / Swipe Support (tuned for mobile vertical scrolling)
+      // Touch / Swipe Support (tuned for mobile vertical scrolling & interactive widgets)
       let touchStartX = 0;
       let touchEndX = 0;
       let touchStartY = 0;
       let touchEndY = 0;
+      let isSwipeIgnored = false;
+
+      function shouldIgnoreDeckSwipe(target) {
+        if (!target || !(target instanceof Element)) return false;
+        return !!target.closest(
+          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe'
+        );
+      }
 
       container.addEventListener('touchstart', (e) => {
+        if (shouldIgnoreDeckSwipe(e.target)) {
+          isSwipeIgnored = true;
+          return;
+        }
+        isSwipeIgnored = false;
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
       }, { passive: true });
 
       container.addEventListener('touchend', (e) => {
+        if (isSwipeIgnored || shouldIgnoreDeckSwipe(e.target)) {
+          isSwipeIgnored = false;
+          return;
+        }
         touchEndX = e.changedTouches[0].screenX;
         touchEndY = e.changedTouches[0].screenY;
         const diffX = touchEndX - touchStartX;
@@ -3001,10 +3035,29 @@
 
       window.selectMapStage = function(idx) {
         const data = stageData[idx] || stageData[0];
+        
+        // Update pills
         const pills = document.querySelectorAll('.stage-pill');
         pills.forEach((p, i) => {
-          if (i === idx) p.classList.add('active');
-          else p.classList.remove('active');
+          if (i === idx) {
+            p.classList.add('active');
+            try {
+              p.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            } catch (err) {}
+          } else {
+            p.classList.remove('active');
+          }
+        });
+
+        // Highlight corresponding map node in SVG
+        const nodes = document.querySelectorAll('.map-node');
+        nodes.forEach((node) => {
+          const stageAttr = parseInt(node.getAttribute('data-stage'), 10);
+          if (stageAttr === idx) {
+            node.classList.add('active');
+          } else {
+            node.classList.remove('active');
+          }
         });
 
         const container = document.getElementById('inspectorContent');
@@ -3047,6 +3100,81 @@
           </div>
         `;
       };
+
+      // ---------------------------------------------------------------------
+      // Slide 3: Interactive Trail Sliding / Scrubbing Controller
+      // ---------------------------------------------------------------------
+      const mapSvg = document.getElementById('interactiveTrailSvg');
+      if (mapSvg) {
+        // Waypoint coordinates in SVG (0 to 700 viewBox)
+        const stageWaypoints = [
+          { idx: 0, x: 70 },
+          { idx: 1, x: 180 },
+          { idx: 2, x: 270 },
+          { idx: 3, x: 370 },
+          { idx: 4, x: 460 },
+          { idx: 5, x: 540 },
+          { idx: 6, x: 640 }
+        ];
+
+        let isTrailSliding = false;
+        let lastSelectedStage = 0;
+
+        function updateStageFromPointer(e) {
+          const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+          if (clientX === undefined) return;
+          const rect = mapSvg.getBoundingClientRect();
+          if (!rect.width) return;
+          const relRatio = (clientX - rect.left) / rect.width;
+          const svgX = Math.max(0, Math.min(700, relRatio * 700));
+
+          let closest = stageWaypoints[0];
+          let minDistance = Math.abs(svgX - closest.x);
+          for (let i = 1; i < stageWaypoints.length; i++) {
+            const dist = Math.abs(svgX - stageWaypoints[i].x);
+            if (dist < minDistance) {
+              minDistance = dist;
+              closest = stageWaypoints[i];
+            }
+          }
+
+          if (closest.idx !== lastSelectedStage) {
+            lastSelectedStage = closest.idx;
+            selectMapStage(closest.idx);
+          }
+        }
+
+        mapSvg.addEventListener('touchstart', (e) => {
+          isTrailSliding = true;
+          updateStageFromPointer(e);
+        }, { passive: true });
+
+        mapSvg.addEventListener('touchmove', (e) => {
+          if (isTrailSliding) {
+            updateStageFromPointer(e);
+          }
+        }, { passive: true });
+
+        const endTrailSlide = () => {
+          isTrailSliding = false;
+        };
+
+        mapSvg.addEventListener('touchend', endTrailSlide, { passive: true });
+        mapSvg.addEventListener('touchcancel', endTrailSlide, { passive: true });
+
+        mapSvg.addEventListener('mousedown', (e) => {
+          isTrailSliding = true;
+          updateStageFromPointer(e);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (isTrailSliding) {
+            updateStageFromPointer(e);
+          }
+        });
+
+        window.addEventListener('mouseup', endTrailSlide);
+      }
 
       // =====================================================================
       // TRANSIT ROUTE OPTIONS SWITCHER CONTROLLER (SLIDES 8 & 24)
