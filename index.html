@@ -10,9 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Leaflet CSS for Real Interactive Map -->
-  
-
   <style>
     /* ==========================================================================
        LUXURY EDITORIAL MULTI-THEME DESIGN SYSTEM
@@ -1171,7 +1168,7 @@
         <div class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</div>
       </div>
       <div class="header-controls">
-        <button class="btn-fs" id="themeBtn" title="Click to Cycle Color Scheme" style="border-color: var(--gold-primary); color: var(--gold-primary); font-weight: 700;">🎨 PALETTE: Ivory Linen</button>
+        <button class="btn-fs" id="themeBtn" title="Click to Cycle Color Scheme" style="border-color: var(--gold-primary); color: var(--gold-primary); font-weight: 700;">🎨 PALETTE: Porcelain & Slate</button>
         <div class="slide-counter" id="slideCounter">SLIDE 01 / 30</div>
         <button class="btn-fs" id="fullscreenBtn" title="Toggle Fullscreen">⛶ EXPAND</button>
       </div>
@@ -2204,7 +2201,7 @@
             </div>
 
             <div class="editorial-media">
-              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Cabo Sardao Sea Cliffs and Stork Nests" />
+              <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80" alt="Cabo Sardao Sea Cliffs and Stork Nests" />
               <div class="media-overlay">
                 <div class="media-badge">CABO SARDÃO CLIFFS</div>
                 <div class="media-title">Vertical Ocean Crags</div>
@@ -2449,7 +2446,7 @@
             </div>
 
             <div class="editorial-media">
-              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="Celebration seafood lunch at Aljezur" />
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Celebration seafood lunch at Aljezur" />
               <div class="media-overlay">
                 <div class="media-badge">VICTORY TABLE</div>
                 <div class="media-title">Feast at Pont’a Pé</div>
@@ -2696,7 +2693,7 @@
               <div class="card-label">20:00 • Celebration Dinner</div>
               <h3 class="card-heading">Belcanto (2 Michelin Stars) or Ramiro</h3>
               <ul class="highlight-list">
-                <li><strong>Belcanto by José Avillez:</strong> 2 Michelin Stars in Chiado • Verified open Saturdays (closed Sun/Mon). Haute Portuguese cuisine. <em>Note: Requires booking exactly 90 days in advance via concierge.</em></li>
+                <li><strong>Belcanto by José Avillez:</strong> 2 Michelin Stars in Chiado • Verified open Saturdays (closed Sun/Mon). Haute Portuguese cuisine. <em>Note: Requires booking exactly 90 days in advance (Target date: Sunday, August 2, 2026 at 00:00 Lisbon time via concierge).</em></li>
                 <li><strong>Cervejaria Ramiro:</strong> Legendary seafood institution • Verified open Saturdays. Giant tiger prawns, garlic clams, and prego steak sandwich.</li>
                 <li><strong>Dress Code:</strong> Smart casual for Belcanto; relaxed casual for Ramiro.</li>
               </ul>
@@ -2944,9 +2941,6 @@
 
   </main>
 
-  <!-- Leaflet JS for Real Interactive Map -->
-  
-
   <!-- =======================================================================
        DECK JAVASCRIPT CONTROLLER & INTERACTIVE MAP
        ======================================================================= -->
@@ -3076,7 +3070,7 @@
       function shouldIgnoreDeckSwipe(target) {
         if (!target || !(target instanceof Element)) return false;
         return !!target.closest(
-          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe'
+          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .transit-option-card, .transit-options-list, #transitDetailCard-8, #transitDetailCard-24, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe'
         );
       }
 
@@ -3138,10 +3132,10 @@
           title: "Complete Coastal Route (93 km)",
           desc: "The Fisherman’s Trail follows the cliff edge along Portugal's pristine Atlantic coast. Supported by daily white-glove luggage transfers so you hike with only daypacks.",
           distance: "93 km / 5 Stages",
-          elevation: "+1,140 m Ascent / -1,155 m Descent",
-          route: "Porto Covo → Aljezur",
+          elevation: "+1,140 m Ascent (+940m clifftops + 200m cove loops) / -1,155 m",
+          route: "Porto Covo → Aljezur (93 km Coastal Route)",
           lodging: "Private Coastal Villas, Rural Quintas & Chiado Palace",
-          transfer: "240 km to Lisbon (A22/A2 Chauffeur)",
+          transfer: "Alentejo Coastal Seafood Feasts & Belcanto 2★ Michelin Finale",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/setubal/rota-vicentina-trilho-dos-pescadores",
           gmapLink: "https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal"
         },
@@ -3486,7 +3480,7 @@
               "<strong>Aljezur Bus Departure:</strong> Departs from Aljezur bus shelter on N120 near the municipal market. Only 2 departures on Friday afternoons (~16:00).",
               "<strong>3h 30m Direct Transit:</strong> Direct highway coach north through the rural Alentejo into Lisbon Sete Rios terminal with onboard Wi-Fi.",
               "<strong>Station Queue & Taxi:</strong> On arrival at busy Sete Rios around 19:45, haul suitcases to the taxi rank and navigate Friday evening rush hour into Chiado (~€12).",
-              "<strong>Energy Cost:</strong> Highly economical, but rigid schedule after hiking 19 km from Odeceixe with zero door-to-door luxury."
+              "<strong>Energy Cost:</strong> Highly economical, but rigid schedule after hiking 18 km from Odeceixe with zero door-to-door luxury."
             ],
             duration: "3H 45M – 4H 15M TOTAL",
             effort: "60% (BUS + URBAN TAXI)",
