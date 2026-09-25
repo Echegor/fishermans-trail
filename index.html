@@ -555,6 +555,12 @@
       letter-spacing: 0.1em;
       font-weight: 700;
     }
+    .scorecard-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
 
     /* Alert / Warning Boxes */
     .field-alert {
@@ -1037,6 +1043,13 @@
         grid-template-columns: 1fr 1fr !important;
         gap: 8px !important;
         width: 100% !important;
+      }
+
+      .scorecard-metric-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 0.8rem !important;
       }
 
       /* Typography adjustments for high readability on narrow screens */
@@ -1893,10 +1906,11 @@
               <div class="card-label">Stage 01 Overview</div>
               <h3 class="card-heading">Wild Dunes & Fortress Views</h3>
               <ul class="highlight-list">
-                <li><strong>08:45 AM:</strong> Leave tagged suitcase (max 18 kg) at Pestana front desk for Vicentina Transfers.</li>
-                <li><strong>09:00 AM Departure:</strong> Step out from Praça Marquês de Pombal onto coastal trails.</li>
+                <li><strong>08:15 AM Luggage Drop:</strong> Leave tagged bags (max 18 kg duffel/roller) at Pestana front desk for Vicentina Transfers.</li>
+                <li><strong>08:30 AM Departure:</strong> Step out from Praça Marquês de Pombal to ensure finishing before the 17:35 PM sunset.</li>
                 <li><strong>Ilha do Pessegueiro:</strong> Gaze at the 16th-century sea fort stranded in pounding Atlantic waves.</li>
-                <li><strong>Terrain:</strong> 14 km of this stage traverses soft dune sand. Low gaiters required.</li>
+                <li><strong>Terrain & Gear:</strong> 14 km soft dune sand; low trail gaiters and trekking poles required.</li>
+                <li><strong>Vehicle Bailout Points:</strong> Praia da Ilha do Pessegueiro (km 7.5) and Praia do Malhão (km 12.0) car parks (accessible by Táxis Milfontes +351 966 523 044).</li>
               </ul>
             </div>
 
@@ -1978,9 +1992,10 @@
                 <h3 class="card-heading">HS Milfontes Beach / Pátios da Vila</h3>
                 <ul class="highlight-list">
                   <li><strong>Address:</strong> Av. Marginal 1, 7630-174 Vila Nova de Milfontes.</li>
-                  <li><strong>Phone:</strong> +351 283 990 070.</li>
-                  <li><strong>Luggage Delivery:</strong> Suitcase placed inside your room by 16:30 PM by Vicentina Transfers.</li>
-                  <li><strong>Recovery:</strong> Hot pool, private oceanfront terrace, and rainfall showers.</li>
+                  <li><strong>Reception & Hours:</strong> +351 283 990 070 (Check-in 16:00 / Check-out 11:00).</li>
+                  <li><strong>Luggage Arrival:</strong> Bags placed in suite by 16:30 PM by Vicentina Transfers.</li>
+                  <li><strong>Morning Portage Cutoff:</strong> Leave tagged bags at reception before <strong>08:45 AM Tuesday</strong>.</li>
+                  <li><strong>Recovery:</strong> Heated relaxation pool, private river-view balcony, and high-pressure showers.</li>
                 </ul>
               </div>
 
@@ -2058,9 +2073,9 @@
                 The inland hiking path forces a dangerous 4.2 km detour along the N393 vehicle bridge without a pedestrian sidewalk. Taking the river ferry bypasses this entirely:
               </p>
               <ul class="highlight-list" style="margin-top: 1rem;">
-                <li><strong>Departure:</strong> Cais da Ribeira pontoon below the fort at 09:30 AM.</li>
+                <li><strong>Departure:</strong> Cais da Ribeira pontoon below the fort at 09:30 AM (Daily operating hours: 09:00 AM – 17:00 PM).</li>
                 <li><strong>Arrival:</strong> Praia das Furnas south beach (steps from the trail).</li>
-                <li><strong>Fare:</strong> €5.00 cash per passenger (5-minute scenic crossing).</li>
+                <li><strong>Fare:</strong> €5.00 cash per passenger in small coins or €5/€10 notes (cards and large banknotes not accepted).</li>
               </ul>
             </div>
 
@@ -2084,7 +2099,7 @@
           <div class="slide-eyebrow">Maritime Dispatch • Stage 02</div>
           <h2 class="slide-title">Taxi Boat Maresia: Direct WhatsApp Dispatch</h2>
           <p class="slide-subtitle">
-            In late October, the ferry operates on-demand rather than a fixed continuous loop.
+            In late October, the ferry operates on-demand between 09:00 AM and 17:00 PM.
           </p>
         </div>
 
@@ -2096,8 +2111,8 @@
               <ul class="highlight-list">
                 <li><strong>Direct WhatsApp / Call:</strong> <strong style="color: #7de0d4; font-size: 1.25rem;">+351 964 200 944</strong></li>
                 <li><strong>Protocol:</strong> Send a WhatsApp message to the captain 20 minutes before walking down to Cais da Ribeira.</li>
-                <li><strong>Fare:</strong> €5.00 per person in cash (carry exact change).</li>
-                <li><strong>Operating Window:</strong> Active on-demand through mid-November.</li>
+                <li><strong>Fare:</strong> €5.00 per person in exact cash (coins / €5 / €10 notes only).</li>
+                <li><strong>Operating Window:</strong> 09:00 AM – 17:00 PM daily through mid-November.</li>
               </ul>
             </div>
 
@@ -2109,8 +2124,8 @@
               </p>
               <div class="property-pill">
                 <div style="font-size: 0.85rem; color: var(--terracotta); font-family: var(--font-mono); font-weight: 700;">CONTINGENCY TAXI</div>
-                <div style="font-size: 1.15rem; color: #fff; margin-top: 4px;">
-                  Call <strong>Táxis Milfontes (+351 966 523 044)</strong> for a 7-minute ride across the bridge to Praia das Furnas (~€8).
+                <div style="font-size: 1.05rem; color: #fff; margin-top: 4px;">
+                  Call <strong>Táxis Milfontes (+351 966 523 044)</strong> for a 7-minute ride across the bridge to Praia das Furnas (~€8). <em>Note: Walking highway N393 bridge is prohibited for safety (no pedestrian sidewalk).</em>
                 </div>
               </div>
             </div>
@@ -2146,8 +2161,9 @@
                 <div class="card-label">Transfer Protocol & Direct Option</div>
                 <h3 class="card-heading">Monte do Zambujeiro vs Moita Mar</h3>
                 <ul class="highlight-list">
-                  <li><strong>Monte do Zambujeiro:</strong> Located in Portas de Transval (15 min north of Almograve). Táxis Odemira (+351 283 322 322, ~€15) transfers you from Almograve to the estate, and returns you to the trail Wednesday at 08:30 AM.</li>
-                  <li><strong>Alternate Direct-Trail Option:</strong> <em>Herdade Moita Mar</em> (luxury estate situated directly in Almograve village—zero transfers needed).</li>
+                  <li><strong>Monte do Zambujeiro:</strong> Located in Portas de Transval (15 min north of Almograve). Call Táxis Odemira (+351 283 322 322, ~€15) upon finishing Stage 2; estate shuttle returns you to Almograve Wednesday at 08:30 AM.</li>
+                  <li><strong>Morning Portage Cutoff:</strong> Leave tagged bags at reception before <strong>08:30 AM Wednesday</strong> for portage to Herdade do Touril.</li>
+                  <li><strong>Alternate Direct Option:</strong> <em>Herdade Moita Mar</em> (luxury estate situated directly in Almograve village—zero transfers needed).</li>
                   <li><strong>Dinner (20:00):</strong> Fresh <em>Cataplana de Marisco</em> at Sabores do Sul or private in-estate dining.</li>
                 </ul>
               </div>
@@ -2181,7 +2197,9 @@
               <ul class="highlight-list">
                 <li><strong>Mandatory 08:30 AM Start:</strong> 22 km plus sit-down seafood lunch requires finishing before the 17:35 PM sunset.</li>
                 <li><strong>Cabo Sardão Storks:</strong> The <em>only place in the world</em> where white storks build nests on vertical oceanic sea pinnacles directly over crashing waves.</li>
-                <li><strong>Historic Lighthouse:</strong> 1915 lighthouse famous for being built with its tower on the landward side.</li>
+                <li><strong>Historic Lighthouse (Km 9.5):</strong> 1915 lighthouse famous for being built with its tower on the landward side.</li>
+                <li><strong>Vehicle Bailout Points:</strong> Paved extraction access at Cabo Sardão (km 9.5) and inland at Cavaleiro village (km 10.5, cafe resupply & taxi pickup via Táxis Odemira +351 283 322 322).</li>
+                <li><strong>Hydration Alert:</strong> Zero commercial services on the trail between Almograve and Cavaleiro (carry min 2.0L water + trail electrolytes).</li>
               </ul>
             </div>
 
@@ -2198,36 +2216,37 @@
       </section>
 
       <!-- ===================================================================
-           SLIDE 18: STAGE 3 MID-POINT LUNCH
+           SLIDE 18: STAGE 3 COASTAL FEAST
            =================================================================== -->
       <section class="slide" data-slide="18">
         <div>
-          <div class="slide-eyebrow">Mid-Stage Gastronomy • Stage 03</div>
-          <h2 class="slide-title">Seafood Lunch: Restaurante O Sacas</h2>
+          <div class="slide-eyebrow">Post-Trek Coastal Feast • Stage 03</div>
+          <h2 class="slide-title">14:30 Harbor Feast: Restaurante O Sacas</h2>
           <p class="slide-subtitle">
-            Hike into the working fishing port of Entrada da Barca at km 10 for fresh coastal cuisine.
+            Hike into the fishing haven of Entrada da Barca at km 19.5 for fresh Atlantic cuisine.
           </p>
         </div>
 
         <div class="content-area">
           <div class="grid-2col">
             <div class="glass-card teal-trim">
-              <div class="card-label">Km 10 Port Stop (12:30 PM)</div>
+              <div class="card-label">Km 19.5 Harbor Feast (14:30 PM)</div>
               <h3 class="card-heading">Restaurante O Sacas</h3>
               <p class="card-body">
-                Positioned directly above the small harbor of Porto das Barcas (Tel: <strong>+351 283 961 151</strong>).
+                Perched directly above the natural rock harbor of Porto das Barcas / Entrada da Barca (Tel: <strong>+351 283 961 151</strong>).
               </p>
               <ul class="highlight-list" style="margin-top: 1rem;">
-                <li><strong>Harbor Atmosphere:</strong> Watch fishermen haul sea bass and percebes up cliff hoists.</li>
-                <li><strong>Signature Dish:</strong> <em>Polvo à Lagareiro</em> (roasted octopus drenched in garlic olive oil) with crushed potatoes.</li>
-                <li><strong>Wine Pairing:</strong> Chilled glass of crisp Quinta de Soalheiro Alvarinho.</li>
+                <li><strong>Trail Pacing:</strong> Enjoy a light snack at Cabo Sardão (km 10), then power through to this triumphant 14:30 PM seafood feast just 2.5 km north of Zambujeira.</li>
+                <li><strong>Harbor Atmosphere:</strong> Watch local fishermen hoist sea bass, sea bream, and goose barnacles (<em>percebes</em>) up the cliff crane.</li>
+                <li><strong>Signature Dish:</strong> <em>Polvo à Lagareiro</em> (tender roasted octopus drenched in hot garlic olive oil) with crushed roasted potatoes.</li>
+                <li><strong>Wine Pairing:</strong> Chilled bottle of crisp Quinta de Soalheiro Alvarinho.</li>
               </ul>
             </div>
 
             <div class="editorial-media">
               <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="Portuguese Fresh Grilled Seafood" />
               <div class="media-overlay">
-                <div class="media-badge">ENTRADA DA BARCA</div>
+                <div class="media-badge">ENTRADA DA BARCA • KM 19.5</div>
                 <div class="media-title">Harbor-Fresh Seafood</div>
                 <div class="media-caption">Caught hours before serving by local Alentejo fishermen.</div>
               </div>
@@ -2267,6 +2286,7 @@
                   <li><strong>Trail Integration:</strong> Walk straight off the path into your Master Suite with private garden terrace. Zero taxi transfers required today.</li>
                   <li><strong>Pool & Grounds:</strong> 20-meter saltwater pool nestled in maritime pine woods.</li>
                   <li><strong>Gate Protocol:</strong> Automated estate gate code pre-registered with Vicentina Transfers.</li>
+                  <li><strong>Morning Luggage Drop:</strong> Place tagged luggage at Touril reception desk by <strong>08:45 AM Thursday</strong> for door-to-door transit to Odeceixe.</li>
                   <li><strong>Dinner (20:00):</strong> Private dining at <em>Restaurante Touril & Vinho</em> (roasted kid goat & estate sourdough).</li>
                 </ul>
               </div>
@@ -2299,8 +2319,9 @@
               <h3 class="card-heading">Dramatic Coastal Geology</h3>
               <ul class="highlight-list">
                 <li><strong>Praia dos Alterinhos:</strong> Folded metamorphic rock strata glowing violet and gold in the morning sun.</li>
-                <li><strong>Praia do Carvalhal Coffee Stop:</strong> Halt at km 8.5 at <em>Bar do Kiko / Kampaoh</em> for espresso and almond cake.</li>
-                <li><strong>Praia de Odeceixe Amphitheater:</strong> Reach the crowning overlook where the Seixe River curves around golden sandspits into the ocean.</li>
+                <li><strong>Praia do Carvalhal (Km 8.5):</strong> Paved bailout extraction point & beach cafe (<em>Bar do Kiko / Kampaoh</em>) for espresso and vehicle access.</li>
+                <li><strong>Praia de Odeceixe Amphitheater:</strong> Crowning overlook where the Seixe River curves around golden sandspits into the ocean.</li>
+                <li><strong>Seixe River Safety Protocol:</strong> <em>Never attempt to wade across the river mouth</em> at high tide due to rip currents. Follow the marked official clifftop road/path loop eastward into Odeceixe village.</li>
                 <li><strong>Border Crossing:</strong> Official boundary between the Alentejo and Algarve regions.</li>
               </ul>
             </div>
@@ -2348,6 +2369,7 @@
                   <li><strong>Address:</strong> Rua 25 de Abril, 8670-320 Odeceixe (Tel: +351 282 949 270).</li>
                   <li><strong>Suite:</strong> Superior suite with private sun terrace and heated plunge spa.</li>
                   <li><strong>Sunset Walk:</strong> Stroll 40 meters to the 1898 wooden windmill for a 360° river valley view.</li>
+                  <li><strong>Morning Luggage Drop:</strong> Place tagged bags at Casas do Moinho front desk by <strong>08:30 AM Friday</strong> for transfer to Aljezur.</li>
                   <li><strong>Dinner (20:00):</strong> Algarvian seafood fusion at <em>Restaurante Kook</em> (braised tuna belly & local figs).</li>
                 </ul>
               </div>
@@ -2380,6 +2402,7 @@
               <h3 class="card-heading">Finishing at the Historic Stone Bridge</h3>
               <ul class="highlight-list">
                 <li><strong>Trail Character:</strong> Peaceful valley footpaths, cork oak woods, and gentle river flats leading south toward Aljezur.</li>
+                <li><strong>Rogil Resupply & Bailout (Km 10.8):</strong> Village crossing with cafes, artisanal bakery (<em>Pão do Rogil</em>), mini-market, and road taxi extraction point.</li>
                 <li><strong>14:15 Milestone:</strong> Cross the ancient stone bridge over the Aljezur river into town.</li>
                 <li><strong>Expedition Conquered:</strong> 93.0 kilometers of Atlantic coastline successfully completed!</li>
               </ul>
@@ -2418,8 +2441,10 @@
                 Largo do Mercado 1, Aljezur (Tel: <strong>+351 282 998 104</strong>). Verified open on Fridays (closed Tuesdays).
               </p>
               <ul class="highlight-list" style="margin-top: 1rem;">
-                <li><strong>Celebration Feast:</strong> Charcoal-grilled sea bream, sweet potato crisps, garlic shrimp, and cold beer.</li>
-                <li><strong>Luggage Handoff:</strong> Vicentina Transfers delivers primary bags right to the pickup spot by 15:00.</li>
+                <li><strong>Celebration Feast:</strong> Charcoal-grilled Atlantic sea bream, Aljezur sweet potato crisps, garlic chili shrimp, and cold artisanal beer.</li>
+                <li><strong>Luggage Handoff:</strong> Vicentina Transfers delivers primary bags directly to Pont’a Pé management by 14:30.</li>
+                <li><strong>Post-Hike Transition:</strong> Private restroom facilities available at Pont'a Pé to freshen up and change out of trail boots into casual executive wear.</li>
+                <li><strong>16:00 Chauffeur Pickup:</strong> Mercedes chauffeur meets you at 16:00 in the adjacent Mercado Municipal lot for the direct transit to Lisbon.</li>
               </ul>
             </div>
 
@@ -2476,7 +2501,7 @@
                 </div>
 
                 <ul class="highlight-list" style="margin-top: 0.4rem;">
-                  <li><strong>Pickup Protocol:</strong> 15:30 at Mercado Municipal de Aljezur parking lot (level paved access off N120).</li>
+                  <li><strong>Pickup Protocol:</strong> 16:00 at Mercado Municipal de Aljezur parking lot (allowing 1.5h for victory feast and wardrobe transition).</li>
                   <li><strong>Direct Palace Delivery:</strong> 2h 45m – 3h 15m nonstop via A22/A2 highway straight to the door of <em>AlmaLusa Baixa/Chiado</em>.</li>
                   <li><strong>Included Amenities:</strong> Electronic highway tolls (Via Verde), English-speaking driver, cold bottled waters, high-speed Wi-Fi, and complete luggage portage.</li>
                   <li><strong>Booking Partners:</strong> Daytrip, Blacklane, Portugal Driver, or directly via AlmaLusa Concierge (+351 212 697 440).</li>
@@ -2660,8 +2685,10 @@
               <div class="card-label">14:30 – 16:30 • Private Yacht Charter</div>
               <h3 class="card-heading">45ft Modern Sailboat from Doca de Belém</h3>
               <ul class="highlight-list">
+                <li><strong>Marina Chauffeur:</strong> Mercedes transfer departs AlmaLusa at 14:00 for Doca de Belém (Gate 3); return transfer at 16:45.</li>
                 <li><strong>Private Cruise:</strong> Glide past the Belém Tower, Monument to Discoveries, and beneath the 25 de Abril Bridge.</li>
                 <li><strong>Tasting:</strong> Chilled <em>Vinho Verde</em>, artisanal sheep’s cheese from Azeitão, and panoramic views of Lisbon's 7 hills.</li>
+                <li><strong>Weather Contingency:</strong> In case of high Tagus swell, substitute with VIP Port wine tasting at <em>Solar do Vinho do Porto</em> or a private curator tour of the National Tile Museum.</li>
               </ul>
             </div>
 
@@ -2669,8 +2696,9 @@
               <div class="card-label">20:00 • Celebration Dinner</div>
               <h3 class="card-heading">Belcanto (2 Michelin Stars) or Ramiro</h3>
               <ul class="highlight-list">
-                <li><strong>Belcanto by José Avillez:</strong> 2 Michelin Stars in Chiado • Verified open Saturdays (closed Sun/Mon). Haute Portuguese cuisine.</li>
-                <li><strong>Cervejaria Ramiro:</strong> Legendary seafood institution • Verified open Saturdays. Giant tiger prawns and garlic clams.</li>
+                <li><strong>Belcanto by José Avillez:</strong> 2 Michelin Stars in Chiado • Verified open Saturdays (closed Sun/Mon). Haute Portuguese cuisine. <em>Note: Requires booking exactly 90 days in advance via concierge.</em></li>
+                <li><strong>Cervejaria Ramiro:</strong> Legendary seafood institution • Verified open Saturdays. Giant tiger prawns, garlic clams, and prego steak sandwich.</li>
+                <li><strong>Dress Code:</strong> Smart casual for Belcanto; relaxed casual for Ramiro.</li>
               </ul>
             </div>
           </div>
@@ -2716,56 +2744,136 @@
                 <div style="font-size: 0.95rem; color: var(--sand-muted); margin-top: 4px;">Clear US Global Entry and return home.</div>
               </div>
             </div>
+
+            <div class="field-alert" style="margin-top: 1.5rem; background: rgba(22, 105, 95, 0.12); border-left-color: var(--teal-ocean);">
+              <div class="field-alert-icon" style="color: var(--teal-ocean);">ℹ</div>
+              <div class="field-alert-text" style="font-size: 0.95rem;">
+                <strong>LIS Departure Protocol & Tax Refund:</strong> Visit the electronic <em>e-TaxFree Portugal</em> validation kiosks located right before Terminal 1 security to scan shopping receipts and claim digital VAT refunds on luxury purchases.
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ===================================================================
-           SLIDE 29: EXPEDITION SCORECARD
+           SLIDE 29: MASTER EXPEDITION SCORECARD & BUDGET HUB
            =================================================================== -->
       <section class="slide" data-slide="29">
         <div>
-          <div class="slide-eyebrow">Trip Totals & Performance Metrics</div>
-          <h2 class="slide-title">The Master Expedition Scorecard</h2>
+          <div class="slide-eyebrow">Trip Summary & Financial Ledger</div>
+          <h2 class="slide-title">Master Expedition Scorecard & Investment Hub</h2>
           <p class="slide-subtitle">
-            A comprehensive summary of the 8-day / 7-night Portuguese adventure.
+            Complete athletic performance metrics, all-inclusive 2-guest budget breakdown, and inclusions matrix.
           </p>
         </div>
 
         <div class="content-area">
-          <div class="glass-card gold-trim">
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
-              <div class="stat-box">
-                <div class="card-label">Distance Hiked</div>
-                <div class="stat-number">93.0</div>
-                <div class="stat-caption">Kilometers Conquered</div>
+          <!-- Top 4 Metrics -->
+          <div class="scorecard-metric-grid">
+            <div class="stat-box" style="padding: 0.8rem 1rem;">
+              <div class="card-label">Distance Hiked</div>
+              <div class="stat-number" style="font-size: 2.1rem; margin-bottom: 2px;">93.0</div>
+              <div class="stat-caption" style="font-size: 0.70rem;">Kilometers Conquered</div>
+            </div>
+
+            <div class="stat-box" style="padding: 0.8rem 1rem;">
+              <div class="card-label">Cumulative Ascent</div>
+              <div class="stat-number" style="font-size: 2.1rem; margin-bottom: 2px;">1,140</div>
+              <div class="stat-caption" style="font-size: 0.70rem;">Meters Clifftop Elevation</div>
+            </div>
+
+            <div class="stat-box" style="padding: 0.8rem 1rem;">
+              <div class="card-label">Trail Time</div>
+              <div class="stat-number" style="font-size: 2.1rem; margin-bottom: 2px;">26.0</div>
+              <div class="stat-caption" style="font-size: 0.70rem;">Hours of Pure Nature</div>
+            </div>
+
+            <div class="stat-box" style="padding: 0.8rem 1rem;">
+              <div class="card-label">Accommodations</div>
+              <div class="stat-number" style="font-size: 2.1rem; margin-bottom: 2px;">5</div>
+              <div class="stat-caption" style="font-size: 0.70rem;">100% Private Luxury Estates</div>
+            </div>
+          </div>
+
+          <!-- Bottom 2-Column Split: Budget on Left, Inclusions/Tipping on Right -->
+          <div class="grid-2col" style="gap: 1rem; align-items: stretch;">
+            
+            <!-- Left: Financial Ledger -->
+            <div class="glass-card gold-trim" style="padding: 1.2rem 1.4rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                  <div class="card-label">Expedition Financial Ledger</div>
+                  <span class="tag tag-gold" style="font-size: 0.68rem;">ESTIMATE FOR 2 GUESTS</span>
+                </div>
+                <h3 class="card-heading" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Master Investment Breakdown</h3>
+
+                <div style="display: flex; flex-direction: column; gap: 5px; font-size: 0.80rem;">
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">TAP Airfare (EWR-LIS Nonstop, 2 pax)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~$1,400</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">5 Luxury Retreats (7 Nights, double occ. + bfast)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€3,200</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">Private Mercedes Chauffeurs (Inbound + Outbound + LIS)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€650</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">Vicentina Luggage Transfers (5 stages, 2 bags)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€140</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">Private Tagus Sunset Yacht Charter (Belém, 2h)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€420</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">Coastal Dining & Belcanto/Ramiro Reserve (2 pax)</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€1,200</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: var(--sand-light);">Incidentals, Ferry & Cash Tipping Reserve</span>
+                    <strong style="color: var(--gold-glow); font-family: var(--font-mono);">~€250</strong>
+                  </div>
+                </div>
               </div>
 
-              <div class="stat-box">
-                <div class="card-label">Cumulative Ascent</div>
-                <div class="stat-number">1,140</div>
-                <div class="stat-caption">Meters Clifftop Elevation</div>
-              </div>
-
-              <div class="stat-box">
-                <div class="card-label">Trail Time</div>
-                <div class="stat-number">26.0</div>
-                <div class="stat-caption">Hours of Pure Nature</div>
-              </div>
-
-              <div class="stat-box">
-                <div class="card-label">Accommodations</div>
-                <div class="stat-number">5</div>
-                <div class="stat-caption">100% Private Luxury Estates</div>
+              <div style="margin-top: 8px; padding: 8px 12px; background: rgba(160, 116, 36, 0.12); border: 1px solid rgba(160, 116, 36, 0.35); border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--gold-primary); text-transform: uppercase; font-weight: 700;">TOTAL EXPEDITION (2 GUESTS)</div>
+                  <div style="font-size: 1.2rem; font-weight: 700; color: #fff; font-family: var(--font-serif);">~€7,260 <span style="font-size: 0.80rem; color: var(--sand-muted); font-family: var(--font-sans); font-weight: 400;">(~$7,800 USD)</span></div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--sand-muted); text-transform: uppercase;">PER PERSON</div>
+                  <div style="font-size: 1.1rem; font-weight: 700; color: var(--gold-glow); font-family: var(--font-serif);">~€3,630 <span style="font-size: 0.78rem; color: var(--sand-muted); font-family: var(--font-sans); font-weight: 400;">(~$3,900)</span></div>
+                </div>
               </div>
             </div>
 
-            <div class="field-alert" style="margin-top: 2rem;">
-              <div class="field-alert-icon">✦</div>
-              <div class="field-alert-text">
-                <strong>Executive Result:</strong> Uncompromising Atlantic nature conquered by day; 5-star private suites, Michelin dining, and peaceful relaxation by night.
+            <!-- Right: Inclusions & Tipping Matrix -->
+            <div class="glass-card teal-trim" style="padding: 1.2rem 1.4rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-label">Operational Clarity</div>
+                <h3 class="card-heading" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Inclusions & Field Protocols</h3>
+
+                <ul class="highlight-list" style="font-size: 0.80rem; margin-bottom: 0.6rem;">
+                  <li><strong>Included:</strong> 7 Nights luxury suites + gourmet breakfast; point-to-point luggage portage; private Mercedes transfers; private 45ft Tagus yacht charter with wine & tapas.</li>
+                  <li><strong>Excluded:</strong> À la carte lunches/dinners; Mira River ferry crossing (€5 cash/person); personal hiking gear; comprehensive medical travel insurance.</li>
+                  <li><strong>Chauffeur Tipping:</strong> 5%–10% in cash for executive long-distance journeys.</li>
+                  <li><strong>Luggage Portage Tipping:</strong> €2–€3 per bag left with hotel reception desk.</li>
+                  <li><strong>Dining Gratuities:</strong> 5%–10% in cash for traditional tascas; 10% for fine dining / Michelin service.</li>
+                </ul>
+              </div>
+
+              <div class="field-alert" style="margin-top: 0; padding: 8px 12px; background: rgba(22, 105, 95, 0.15); border-left-color: var(--teal-ocean);">
+                <div class="field-alert-icon" style="color: var(--teal-ocean); font-size: 1.1rem;">✦</div>
+                <div class="field-alert-text" style="font-size: 0.80rem; line-height: 1.35;">
+                  <strong>Executive Standard:</strong> World-class clifftop endurance balanced by 5-star private suites, seamless portage, and curated gastronomy every evening.
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -2799,12 +2907,12 @@
               <div class="card-label">24/7 Field Directory & Taxis</div>
               <h3 class="card-heading">Emergency & Dispatch Numbers</h3>
               <ul class="highlight-list">
-                <li><strong>National Emergency / SOS:</strong> <strong style="color: #ff8585;">112</strong> (English spoken).</li>
+                <li><strong>EU Emergency Roaming / SOS:</strong> <strong style="color: #ff8585;">112</strong> (English spoken). Roams onto <em>any active cellular carrier network</em> (MEO/NOS/Vodafone) without local credit.</li>
                 <li><strong>Ferry Captain WhatsApp:</strong> +351 964 200 944</li>
                 <li><strong>Táxis Milfontes:</strong> +351 966 523 044</li>
                 <li><strong>Táxis Odemira:</strong> +351 283 322 322</li>
                 <li><strong>Táxis Aljezur:</strong> +351 968 450 710</li>
-                <li><strong>Vicentina Luggage Transfers:</strong> +351 969 293 831 (Max 18 kg limit)</li>
+                <li><strong>Luggage Portage Specs:</strong> Vicentina Transfers (+351 969 293 831) strict <strong>18.0 kg (40 lbs)</strong> limit per bag; waterproof luggage tags with guest itinerary required.</li>
                 <li><strong>US Embassy Lisbon:</strong> +351 217 273 300</li>
               </ul>
             </div>
@@ -3032,86 +3140,86 @@
           distance: "93 km / 5 Stages",
           elevation: "+1,140 m Ascent / -1,155 m Descent",
           route: "Porto Covo → Aljezur",
-          lodging: "Private Villas, Rural Boutique Quintas & Palaces",
+          lodging: "Private Coastal Villas, Rural Quintas & Chiado Palace",
           transfer: "240 km to Lisbon (A22/A2 Chauffeur)",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/setubal/rota-vicentina-trilho-dos-pescadores",
           gmapLink: "https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal"
         },
         {
           id: 1,
-          label: "Stage 1 • Sun, Oct 25",
+          label: "Stage 01 • Mon, Oct 26",
           title: "Porto Covo to Vila Nova de Milfontes",
           desc: "The expedition opens with dramatic Atlantic ocean vistas, traversing deep dune sands past Ilha do Pessegueiro to the Mira River estuary.",
-          distance: "20.0 km • 6h 30m Est. Duration",
+          distance: "20.0 km • 6h 30m Est. Duration (08:30 Start)",
           elevation: "+170 m Ascent / -190 m Descent",
-          route: "65% Deep Dune Sand • 35% Compact Cliffs",
-          lodging: "HS Milfontes Beach (Ocean-view Suites)",
-          transfer: "Dinner: Tasca do Celso (Octopus & Alentejo Wines)",
+          route: "65% Deep Dune Sand • 35% Compact Clifftops",
+          lodging: "HS Milfontes Beach (Ocean-view Terrace Suites)",
+          transfer: "Dinner: Restaurante Alento (Fresh Wild Sea Bass & Wine)",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/setubal/trilho-dos-pescadores-porto-covo-vila-nova-de-milfontes",
           gmapLink: "https://www.google.com/maps/dir/Porto+Covo/Vila+Nova+de+Milfontes"
         },
         {
           id: 2,
-          label: "Stage 2 • Mon, Oct 26",
+          label: "Stage 02 • Tue, Oct 27",
           title: "Vila Nova de Milfontes to Almograve",
           desc: "Short, restorative coastal stage. Features private fisherman boat ferry across the Mira River estuary, bypassing the 4.5 km asphalt highway detour.",
           distance: "11.0 km • 3h 30m Est. Duration",
           elevation: "+90 m Ascent / -95 m Descent",
-          route: "Mira River Boat Ferry + Coastal Scrub Trails",
+          route: "Mira River Boat Ferry (€5 cash) + Coastal Scrub Trails",
           lodging: "Monte do Zambujeiro (Private Riverside Quinta)",
-          transfer: "Dinner: Alento (Fresh Wild Sea Bass & Wine)",
+          transfer: "Dinner: Sabores do Sul / Quinta Riverside Dining",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-vila-nova-de-milfontes-almograve",
           gmapLink: "https://www.google.com/maps/dir/Vila+Nova+de+Milfontes/Almograve"
         },
         {
           id: 3,
-          label: "Stage 3 • Tue, Oct 27",
+          label: "Stage 03 • Wed, Oct 28",
           title: "Almograve to Zambujeira do Mar",
-          desc: "World-renowned clifftop hike passing the iconic white stork nests of Cabo Sardão—the only known marine cliff storks in the world.",
-          distance: "22.0 km • 6h 00m Est. Duration",
+          desc: "World-renowned clifftop hike passing the iconic white stork nests of Cabo Sardão. Celebratory seafood late lunch at Restaurante O Sacas at Km 19.5 (Entrada da Barca).",
+          distance: "22.0 km • 6h 00m Est. Duration (08:30 Start)",
           elevation: "+210 m Ascent / -200 m Descent",
-          route: "Cabo Sardão Lighthouse & Red Dunes of Cavaleiro",
+          route: "Cabo Sardão Lighthouse (Km 10) & O Sacas Harbor (Km 19.5)",
           lodging: "Herdade do Touril (365-hectare Private Estate)",
-          transfer: "Dinner: Touril Restaurant (Estate Lamb & Pork)",
+          transfer: "Dinner: Touril Restaurant (Estate Lamb & Porco Preto)",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-almograve-zambujeira-do-mar",
           gmapLink: "https://www.google.com/maps/dir/Almograve/Zambujeira+do+Mar"
         },
         {
           id: 4,
-          label: "Stage 4 • Wed, Oct 28",
+          label: "Stage 04 • Thu, Oct 29",
           title: "Zambujeira do Mar to Odeceixe",
           desc: "Crossing the natural border from Alentejo into the Algarve via the stunning tidal horseshoe sand spit of Praia de Odeceixe.",
           distance: "18.0 km • 5h 30m Est. Duration",
           elevation: "+240 m Ascent / -230 m Descent",
-          route: "Ponta em Carvalhal & Seixe River Tidal Valley",
+          route: "Ponta em Carvalhal & Seixe River Tidal Valley Loop",
           lodging: "Casas do Moinho (Chic Windmill Village Suites)",
-          transfer: "Dinner: Kanimambo / Casas do Moinho Bistro",
+          transfer: "Dinner: Restaurante Kook / Casas do Moinho Bistro",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-zambujeira-do-mar-odeceixe",
           gmapLink: "https://www.google.com/maps/dir/Zambujeira+do+Mar/Odeceixe"
         },
         {
           id: 5,
-          label: "Stage 5 • Thu, Oct 29",
+          label: "Stage 05 • Fri, Oct 30",
           title: "Odeceixe to Aljezur (Trek Finish)",
-          desc: "Grand finale of the coastal hike. Expansive ocean plateau views followed by descent into the historic Moorish castle valley of Aljezur.",
+          desc: "Grand finale of the coastal hike. Expansive ocean plateau views followed by descent into historic Moorish castle valley of Aljezur. Victory feast at Pont'a Pé.",
           distance: "18.0 km • 5h 00m Est. Duration",
           elevation: "+230 m Ascent / -240 m Descent",
           route: "Rogil Sweet Potato Fields & Aljezur Castle Valley",
-          lodging: "Victory Finish at Aljezur",
-          transfer: "Dinner: Pont'a Pé (Wild Boar & Local Seafood)",
+          lodging: "Afternoon Chauffeur Transit to AlmaLusa Lisbon",
+          transfer: "14:30 Victory Feast: Pont'a Pé • Evening: Lisbon",
           alltrailsLink: "https://www.alltrails.com/trail/portugal/faro/trilho-dos-pescadores-odeceixe-aljezur",
           gmapLink: "https://www.google.com/maps/dir/Odeceixe/Aljezur"
         },
         {
           id: 6,
-          label: "Executive Transfer • Fri, Oct 30",
-          title: "Aljezur to Lisboa (AlmaLusa Palace)",
-          desc: "Private Mercedes-Benz V-Class chauffeur transfer northbound through the Alentejo interior to Lisbon, followed by a private Tagus sunset yacht charter.",
-          distance: "240 km • 2h 45m Expressway Drive",
-          elevation: "Expressway Transit (A22 / A2)",
-          route: "Door-to-Door Private Chauffeur Portage",
+          label: "Executive Finale • Fri–Sun, Oct 30–Nov 1",
+          title: "Lisbon: Private Tagus Yacht & 2-Star Michelin",
+          desc: "Private Mercedes-Benz V-Class chauffeur transit north to Lisbon. 2 nights at AlmaLusa Palace in Chiado, 2-hour private Tagus sunset yacht charter, and Belcanto dinner.",
+          distance: "240 km Expressway Transfer + City Exploration",
+          elevation: "Expressway Transit (A22 / A2) + Tagus Sail",
+          route: "Door-to-Door Private Chauffeur Portage & Belém Marina",
           lodging: "AlmaLusa Baixa/Chiado (18th-century Palace)",
-          transfer: "Finale: 2-Hour Private Sunset Yacht on Tagus",
+          transfer: "Private Tagus Yacht • Dinner: Belcanto by José Avillez",
           alltrailsLink: "https://rotavicentina.com/en/trilho-dos-pescadores/",
           gmapLink: "https://www.google.com/maps/dir/Aljezur/AlmaLusa+Baixa+Chiado,+Lisbon"
         }
@@ -3356,7 +3464,7 @@
               { name: "Mercedes V-Class (Luggage Van)", price: "€350 – €420", sub: "Max space & executive comfort", color: "var(--teal-ocean)" }
             ],
             highlights: [
-              "<strong>Pickup Protocol:</strong> 15:30 at Mercado Municipal de Aljezur parking lot (level paved access off N120).",
+              "<strong>Pickup Protocol:</strong> 16:00 at Mercado Municipal de Aljezur parking lot (allowing 1.5h for victory feast and wardrobe transition).",
               "<strong>Direct Palace Delivery:</strong> 2h 45m – 3h 15m nonstop via A22/A2 highway straight to the door of <em>AlmaLusa Baixa/Chiado</em>.",
               "<strong>Included Amenities:</strong> Electronic highway tolls (Via Verde), English-speaking driver, cold bottled waters, high-speed Wi-Fi, and complete luggage portage.",
               "<strong>Booking Partners:</strong> Daytrip, Blacklane, Portugal Driver, or directly via AlmaLusa Concierge (+351 212 697 440)."
