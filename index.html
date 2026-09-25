@@ -2077,7 +2077,7 @@
             </div>
 
             <div class="editorial-media">
-              <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80" alt="Mira River Ferry Crossing at Vila Nova de Milfontes" />
+              <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80" alt="Mira River Ferry Crossing at Vila Nova de Milfontes" />
               <div class="media-overlay">
                 <div class="media-badge">STAGE 02 SHORTCUT</div>
                 <div class="media-title">Cais da Ribeira Ferry</div>
@@ -2776,7 +2776,7 @@
             <div class="stat-box" style="padding: 0.8rem 1rem;">
               <div class="card-label">Cumulative Ascent</div>
               <div class="stat-number" style="font-size: 2.1rem; margin-bottom: 2px;">1,140</div>
-              <div class="stat-caption" style="font-size: 0.70rem;">Meters Clifftop Elevation</div>
+              <div class="stat-caption" style="font-size: 0.70rem;">Meters Gain (+940m Cliffs + 200m Coves)</div>
             </div>
 
             <div class="stat-box" style="padding: 0.8rem 1rem;">
@@ -3119,6 +3119,8 @@
       document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
           fullscreenBtn.textContent = '⛶ EXPAND';
+        } else {
+          fullscreenBtn.textContent = '✕ EXIT';
         }
       });
 
