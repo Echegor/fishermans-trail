@@ -776,6 +776,49 @@
       touch-action: pan-y;
     }
 
+    .alltrails-hero-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c9f45;
+      color: #ffffff !important;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: var(--transition-standard);
+      box-shadow: 0 4px 14px rgba(44, 159, 69, 0.35);
+    }
+    .alltrails-hero-action:hover {
+      background: #238338;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(44, 159, 69, 0.45);
+    }
+
+    .alltrails-stage-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #2c9f45;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      background: rgba(44, 159, 69, 0.09);
+      border-radius: 6px;
+      border: 1px solid rgba(44, 159, 69, 0.3);
+      transition: var(--transition-standard);
+    }
+    .alltrails-stage-link:hover {
+      background: rgba(44, 159, 69, 0.18);
+      color: #238338;
+      transform: translateY(-1px);
+    }
+
     .gmaps-hero-action {
       display: flex;
       justify-content: space-between;
@@ -1319,69 +1362,103 @@
                 </div>
               </div>
 
-              <!-- Master Google Maps Direct Action Button -->
-              <div style="margin-top: 1.2rem;">
-                <a href="https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal" 
-                   target="_blank" rel="noopener noreferrer" class="gmaps-hero-action">
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    <span>OPEN FULL EXPEDITION IN GOOGLE MAPS</span>
+              <!-- Master GPS & Hiking Map Dispatch Hub -->
+              <div style="margin-top: 0.8rem; display: flex; flex-direction: column; gap: 6px;">
+                <!-- Primary: AllTrails (Real Hiking Trail GPS & Offline Topo) -->
+                <a href="https://www.alltrails.com/trail/portugal/setubal/rota-vicentina-trilho-dos-pescadores" 
+                   target="_blank" rel="noopener noreferrer" class="alltrails-hero-action" style="padding: 10px 16px; font-size: 0.86rem;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                    </svg>
+                    <span>OPEN EXPEDITION IN ALLTRAILS (OFFLINE GPS & TOPO)</span>
                   </div>
-                  <span style="font-size: 1.2rem; font-weight: 900;">↗</span>
+                  <span style="font-size: 1.1rem; font-weight: 900;">↗</span>
                 </a>
+
+                <!-- Secondary Split Buttons: Official GPX & Google Maps Transit -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                  <a href="https://rotavicentina.com/en/trilho-dos-pescadores/" 
+                     target="_blank" rel="noopener noreferrer" class="tag tag-teal" 
+                     style="text-decoration:none; padding: 7px 10px; font-weight: 700; text-align: center; justify-content: center; display: flex; align-items: center; gap: 5px; font-size: 0.76rem; border-radius: 6px;">
+                    <span>🗺️ Official Rota GPX</span> ↗
+                  </a>
+                  <a href="https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal" 
+                     target="_blank" rel="noopener noreferrer" class="tag tag-gold" 
+                     style="text-decoration:none; padding: 7px 10px; font-weight: 700; text-align: center; justify-content: center; display: flex; align-items: center; gap: 5px; font-size: 0.76rem; border-radius: 6px;">
+                    <span>🚗 Google Maps Transit</span> ↗
+                  </a>
+                </div>
               </div>
             </div>
 
             <!-- Right: Dynamic Stage Inspector Panel -->
-            <div class="glass-card gold-trim" id="stageInspector" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="glass-card gold-trim" id="stageInspector" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.2rem;">
               <div id="inspectorContent">
                 <div class="card-label">Master Expedition Overview</div>
-                <h3 class="card-heading">Complete Coastal Route (93 km)</h3>
-                <p class="card-body" style="font-size: 1.05rem;">
+                <h3 class="card-heading" style="margin-bottom: 0.3rem;">Complete Coastal Route (93 km)</h3>
+                <p class="card-body" style="font-size: 0.95rem; margin-bottom: 0.6rem;">
                   The Fisherman’s Trail follows the cliff edge along Portugal's pristine Atlantic coast. Supported by daily white-glove luggage transfers so you hike with only daypacks.
                 </p>
 
-                <div style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 10px;">
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+                <div style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
                     <span style="color: var(--gold-glow);">Total Coastal Trek:</span>
                     <strong>93 km / 5 Stages</strong>
                   </div>
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
                     <span style="color: var(--teal-ocean);">Total Elevation:</span>
                     <strong>+1,140 m Ascent / -1,155 m Descent</strong>
                   </div>
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
                     <span style="color: var(--terracotta);">Trailhead & Finish:</span>
                     <strong>Porto Covo → Aljezur</strong>
                   </div>
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.95rem;">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem;">
                     <span style="color: var(--sand-muted);">Chauffeur Transfer:</span>
                     <strong>240 km to Lisbon (A22/A2)</strong>
                   </div>
                 </div>
+
+                <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                  <a href="https://www.alltrails.com/trail/portugal/setubal/rota-vicentina-trilho-dos-pescadores" target="_blank" rel="noopener noreferrer" class="alltrails-stage-link" style="padding: 6px 10px; font-size: 0.76rem; justify-content: center;">
+                    <span>🌲 AllTrails Live Topo</span> ↗
+                  </a>
+                  <a href="https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal" target="_blank" rel="noopener noreferrer" class="gmaps-stage-link" style="padding: 6px 10px; font-size: 0.76rem; justify-content: center;">
+                    <span>📍 Google Maps Road</span> ↗
+                  </a>
+                </div>
               </div>
 
-              <!-- Quick Stage GPS Links -->
-              <div style="margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid var(--border-subtle);">
-                <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--sand-muted); text-transform: uppercase; margin-bottom: 6px;">
-                  Instant Google Maps Village Links:
+              <!-- Quick Stage GPS Links & Signal Advisory -->
+              <div style="margin-top: 0.8rem; padding-top: 0.5rem; border-top: 1px solid var(--border-subtle);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--sand-muted); text-transform: uppercase;">
+                    Village Navigation Links:
+                  </span>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                  <a href="https://www.google.com/maps/dir/Porto+Covo/Vila+Nova+de+Milfontes" target="_blank" class="tag tag-gold" style="text-decoration:none;">Stage 1 ↗</a>
-                  <a href="https://www.google.com/maps/dir/Vila+Nova+de+Milfontes/Almograve" target="_blank" class="tag tag-gold" style="text-decoration:none;">Stage 2 ↗</a>
-                  <a href="https://www.google.com/maps/dir/Almograve/Zambujeira+do+Mar" target="_blank" class="tag tag-gold" style="text-decoration:none;">Stage 3 ↗</a>
-                  <a href="https://www.google.com/maps/dir/Zambujeira+do+Mar/Odeceixe" target="_blank" class="tag tag-gold" style="text-decoration:none;">Stage 4 ↗</a>
-                  <a href="https://www.google.com/maps/dir/Odeceixe/Aljezur" target="_blank" class="tag tag-gold" style="text-decoration:none;">Stage 5 ↗</a>
-                  <a href="https://www.google.com/maps/dir/Aljezur/Lisbon" target="_blank" class="tag tag-gold" style="text-decoration:none;">Lisbon Transfer ↗</a>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <a href="https://www.google.com/maps/dir/Porto+Covo/Vila+Nova+de+Milfontes" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Stage 1 ↗</a>
+                  <a href="https://www.google.com/maps/dir/Vila+Nova+de+Milfontes/Almograve" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Stage 2 ↗</a>
+                  <a href="https://www.google.com/maps/dir/Almograve/Zambujeira+do+Mar" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Stage 3 ↗</a>
+                  <a href="https://www.google.com/maps/dir/Zambujeira+do+Mar/Odeceixe" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Stage 4 ↗</a>
+                  <a href="https://www.google.com/maps/dir/Odeceixe/Aljezur" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Stage 5 ↗</a>
+                  <a href="https://www.google.com/maps/dir/Aljezur/Lisbon" target="_blank" class="tag tag-gold" style="text-decoration:none; font-size: 0.74rem; padding: 2px 7px;">Lisbon ↗</a>
                 </div>
 
-                <!-- Google Maps vs Trail Alert -->
-                <div style="margin-top: 10px; background: var(--field-alert-bg); border: 1px solid var(--terracotta-soft); padding: 8px 12px; border-radius: 6px;">
-                  <div style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--terracotta); margin-bottom: 2px;">
-                    ⚠️ NAV PROTOCOL: GOOGLE MAPS INLAND BIAS
+                <!-- Signal & Offline GPS Advisory Protocol -->
+                <div style="margin-top: 8px; background: var(--field-alert-bg); border: 1px solid var(--gold-glow); padding: 8px 12px; border-radius: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 800; color: var(--gold-glow); letter-spacing: 0.04em;">
+                      📶 CELL SIGNAL & OFFLINE GPS BRIEFING
+                    </div>
+                    <span class="tag tag-teal" style="font-size: 0.64rem; padding: 1px 6px;">4G/5G ON CLIFFS • SPOTTY IN RAVINES</span>
                   </div>
-                  <div style="font-size: 0.8rem; color: var(--sand-muted); line-height: 1.4;">
-                    Google Maps walking directions route inland along paved roads (N390/N393) because protected wilderness cliff tracks are not indexed. Use Google Maps for hotel arrival & Lisbon transfer, but follow <strong>Blue/Green blazes</strong> or <strong>Outdooractive/GPX</strong> for the cliff path.
+                  <div style="font-size: 0.78rem; color: var(--sand-light); line-height: 1.4;">
+                    <strong>Is there signal on the trail?</strong> 4G/5G (MEO / Vodafone / NOS) is solid on ~85% of clifftops and towns. It drops to 0 bars in deep river gorges and cove descents (Mira river crossing, Odeceixe tidal valley).
+                  </div>
+                  <div style="margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--border-subtle); font-size: 0.76rem; color: var(--sand-muted); line-height: 1.35;">
+                    <strong>Protocol:</strong> Download offline maps on <strong>AllTrails Pro</strong> or official GPX before departing each morning. Use <strong>Airplane Mode</strong> while hiking (GPS satellites work with 0 bars, saving 60% battery).
                   </div>
                 </div>
               </div>
@@ -2957,6 +3034,7 @@
           route: "Porto Covo → Aljezur",
           lodging: "Private Villas, Rural Boutique Quintas & Palaces",
           transfer: "240 km to Lisbon (A22/A2 Chauffeur)",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/setubal/rota-vicentina-trilho-dos-pescadores",
           gmapLink: "https://www.google.com/maps/dir/Porto+Covo,+Portugal/Vila+Nova+de+Milfontes,+Portugal/Almograve,+Portugal/Zambujeira+do+Mar,+Portugal/Odeceixe,+Portugal/Aljezur,+Portugal/Lisbon,+Portugal"
         },
         {
@@ -2969,6 +3047,7 @@
           route: "65% Deep Dune Sand • 35% Compact Cliffs",
           lodging: "HS Milfontes Beach (Ocean-view Suites)",
           transfer: "Dinner: Tasca do Celso (Octopus & Alentejo Wines)",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/setubal/trilho-dos-pescadores-porto-covo-vila-nova-de-milfontes",
           gmapLink: "https://www.google.com/maps/dir/Porto+Covo/Vila+Nova+de+Milfontes"
         },
         {
@@ -2981,6 +3060,7 @@
           route: "Mira River Boat Ferry + Coastal Scrub Trails",
           lodging: "Monte do Zambujeiro (Private Riverside Quinta)",
           transfer: "Dinner: Alento (Fresh Wild Sea Bass & Wine)",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-vila-nova-de-milfontes-almograve",
           gmapLink: "https://www.google.com/maps/dir/Vila+Nova+de+Milfontes/Almograve"
         },
         {
@@ -2993,6 +3073,7 @@
           route: "Cabo Sardão Lighthouse & Red Dunes of Cavaleiro",
           lodging: "Herdade do Touril (365-hectare Private Estate)",
           transfer: "Dinner: Touril Restaurant (Estate Lamb & Pork)",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-almograve-zambujeira-do-mar",
           gmapLink: "https://www.google.com/maps/dir/Almograve/Zambujeira+do+Mar"
         },
         {
@@ -3005,6 +3086,7 @@
           route: "Ponta em Carvalhal & Seixe River Tidal Valley",
           lodging: "Casas do Moinho (Chic Windmill Village Suites)",
           transfer: "Dinner: Kanimambo / Casas do Moinho Bistro",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/beja/trilho-dos-pescadores-zambujeira-do-mar-odeceixe",
           gmapLink: "https://www.google.com/maps/dir/Zambujeira+do+Mar/Odeceixe"
         },
         {
@@ -3017,6 +3099,7 @@
           route: "Rogil Sweet Potato Fields & Aljezur Castle Valley",
           lodging: "Victory Finish at Aljezur",
           transfer: "Dinner: Pont'a Pé (Wild Boar & Local Seafood)",
+          alltrailsLink: "https://www.alltrails.com/trail/portugal/faro/trilho-dos-pescadores-odeceixe-aljezur",
           gmapLink: "https://www.google.com/maps/dir/Odeceixe/Aljezur"
         },
         {
@@ -3029,6 +3112,7 @@
           route: "Door-to-Door Private Chauffeur Portage",
           lodging: "AlmaLusa Baixa/Chiado (18th-century Palace)",
           transfer: "Finale: 2-Hour Private Sunset Yacht on Tagus",
+          alltrailsLink: "https://rotavicentina.com/en/trilho-dos-pescadores/",
           gmapLink: "https://www.google.com/maps/dir/Aljezur/AlmaLusa+Baixa+Chiado,+Lisbon"
         }
       ];
@@ -3093,9 +3177,12 @@
             </div>
           </div>
 
-          <div style="margin-top: 12px;">
+          <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+            <a href="${data.alltrailsLink}" target="_blank" rel="noopener noreferrer" class="alltrails-stage-link">
+              <span>🌲 Open Stage in AllTrails (Live Topo & Offline GPS)</span> ↗
+            </a>
             <a href="${data.gmapLink}" target="_blank" rel="noopener noreferrer" class="gmaps-stage-link">
-              <span>📍 Open this stage in Google Maps Navigation</span> ↗
+              <span>📍 Open Village / Lodging in Google Maps</span> ↗
             </a>
           </div>
         `;
