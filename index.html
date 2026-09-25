@@ -1152,6 +1152,69 @@
         font-size: 0.76rem !important;
       }
     }
+
+    /* ==========================================================================
+       PRINT & PDF DOSSIER EXPORT STYLESHEET (Cmd+P)
+       ========================================================================== */
+    @media print {
+      body, html {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .viewport-ambient, .deck-header, .deck-footer, .header-controls, .nav-buttons, .progress-dots, .mobile-slide-indicator {
+        display: none !important;
+      }
+      .deck-container {
+        max-width: 100% !important;
+        aspect-ratio: auto !important;
+        height: auto !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      .slides-wrapper {
+        overflow: visible !important;
+        height: auto !important;
+        display: block !important;
+      }
+      .slide {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        height: auto !important;
+        min-height: 90vh !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        padding: 2.5rem 2rem !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        overflow: visible !important;
+      }
+      .glass-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #0f172a !important;
+      }
+      .card-heading, .slide-title, strong {
+        color: #0f172a !important;
+      }
+      .card-body, p, li {
+        color: #334155 !important;
+      }
+      .tag {
+        border-color: #94a3b8 !important;
+        color: #0f172a !important;
+        background: #f1f5f9 !important;
+      }
+      .editorial-media img {
+        max-height: 340px !important;
+        object-fit: cover !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1418,15 +1481,15 @@
                   </div>
                   <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
                     <span style="color: var(--teal-ocean);">Total Elevation:</span>
-                    <strong>+1,140 m Ascent / -1,155 m Descent</strong>
+                    <strong>+1,140 m (+940m cliffs + 200m cove loops)</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4px;">
                     <span style="color: var(--terracotta);">Trailhead & Finish:</span>
-                    <strong>Porto Covo → Aljezur</strong>
+                    <strong>Porto Covo → Aljezur (93 km)</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.88rem;">
-                    <span style="color: var(--sand-muted);">Chauffeur Transfer:</span>
-                    <strong>240 km to Lisbon (A22/A2)</strong>
+                    <span style="color: var(--sand-muted);">Gastronomy / Finale:</span>
+                    <strong style="color: var(--gold-primary);">Alentejo Feasts & Belcanto 2★ Michelin</strong>
                   </div>
                 </div>
 
