@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Fisherman’s Trail & Lisbon Master Expedition Deck | Oct 24 – Nov 1, 2026</title>
   <meta name="description" content="Ultra-luxury 9-day expedition guide along Portugal's Fisherman's Trail (Rota Vicentina) from Porto Covo to Aljezur, featuring 5-star boutique lodgings, Michelin gastronomy, and a private Tagus yacht charter.">
   <meta name="theme-color" content="#b47b2c">
@@ -1290,7 +1290,10 @@
       .slide {
         width: 100% !important;
         max-width: 100vw !important;
-        padding: 3.8rem 1rem 4.8rem 1rem !important;
+        padding-top: calc(48px + max(0.8rem, env(safe-area-inset-top))) !important;
+        padding-bottom: calc(56px + max(1rem, env(safe-area-inset-bottom))) !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
         justify-content: flex-start !important;
         overflow-x: hidden !important;
         overflow-y: auto !important;
@@ -1302,26 +1305,47 @@
 
       /* Compact, finger-friendly Header */
       .deck-header {
-        padding: 0.6rem 0.8rem !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: max(0.6rem, env(safe-area-inset-top)) 0.8rem 0.6rem 0.8rem !important;
         border-bottom: 1px solid var(--border-subtle) !important;
         background: var(--header-bg) !important;
         backdrop-filter: blur(16px) !important;
-        height: 48px !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        height: auto !important;
+        min-height: 48px !important;
+        pointer-events: auto !important;
+        z-index: 500 !important;
       }
       .header-brand {
-        padding: 4px 6px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        padding: 6px 10px !important;
         gap: 8px !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: rgba(180, 123, 44, 0.2) !important;
+        z-index: 501 !important;
+      }
+      .header-brand * {
+        pointer-events: none !important;
       }
       .brand-title {
         display: none !important;
       }
       .brand-drawer-badge {
         display: inline-flex !important;
-        font-size: 0.65rem !important;
-        padding: 2px 7px !important;
+        font-size: 0.68rem !important;
+        padding: 3px 8px !important;
+        font-weight: 700 !important;
       }
       .header-controls {
         gap: 0.35rem !important;
+        pointer-events: auto !important;
+        z-index: 501 !important;
       }
 
       /* Mobile Bottom-Sheet Navigation Drawer */
@@ -1401,11 +1425,19 @@
 
       /* Compact, thumb-accessible Bottom Bar */
       .deck-footer {
-        padding: 0.5rem 1rem !important;
-        height: 50px !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 0.5rem 1rem max(0.6rem, env(safe-area-inset-bottom)) 1rem !important;
+        height: auto !important;
+        min-height: 54px !important;
         border-top: 1px solid var(--border-subtle) !important;
         background: var(--footer-bg) !important;
         backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        pointer-events: auto !important;
+        z-index: 500 !important;
       }
       .progress-dots {
         display: none !important;
@@ -1420,12 +1452,24 @@
       }
       .nav-buttons {
         display: flex !important;
-        gap: 10px !important;
+        gap: 12px !important;
+        pointer-events: auto !important;
+        z-index: 501 !important;
       }
       .nav-btn {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 1.25rem !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 1.4rem !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: rgba(184, 76, 42, 0.25) !important;
+        border-radius: 50% !important;
+      }
+      .nav-btn * {
+        pointer-events: none !important;
       }
 
       /* Content Area & Stacked Column Grids */
@@ -1680,8 +1724,8 @@
     <!-- Top Navigation Header -->
     <header class="deck-header">
       <button class="header-brand" id="deckDrawerTrigger" type="button" aria-label="Open Slide Navigation Sheet" title="Open Slide Index (List all 30 pages)">
-        <div class="brand-crest"><div class="brand-crest-dot"></div></div>
-        <div class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</div>
+        <span class="brand-crest"><span class="brand-crest-dot"></span></span>
+        <span class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</span>
         <span class="brand-drawer-badge">INDEX ▾</span>
       </button>
       <div class="header-controls">
@@ -3527,12 +3571,32 @@
       const fullscreenBtn = document.getElementById('fullscreenBtn');
       const container = document.getElementById('presentationContainer');
 
+      // High-performance, zero-delay touch & click tap binder for mobile and desktop
+      function bindTap(el, handler) {
+        if (!el) return;
+        let lastTapTime = 0;
+        const safeHandler = function(e) {
+          const now = Date.now();
+          if (now - lastTapTime < 350) return;
+          lastTapTime = now;
+          handler(e);
+        };
+        el.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          safeHandler(e);
+        }, { passive: false });
+        el.addEventListener('click', function(e) {
+          safeHandler(e);
+        });
+      }
+
       // Build Progress Dots for all 30 slides
       for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
         dot.className = `dot ${i === 0 ? 'active' : ''}`;
         dot.title = `Slide ${i + 1}`;
-        dot.addEventListener('click', () => goToSlide(i));
+        bindTap(dot, () => goToSlide(i));
         dotsContainer.appendChild(dot);
       }
       const dots = Array.from(dotsContainer.children);
@@ -3611,9 +3675,9 @@
         }
       });
 
-      // Event Listeners
-      nextBtn.addEventListener('click', nextSlide);
-      prevBtn.addEventListener('click', prevSlide);
+      // Event Listeners with guaranteed touch and click response
+      bindTap(nextBtn, nextSlide);
+      bindTap(prevBtn, prevSlide);
 
       // Keyboard arrow & spacebar navigation
       window.addEventListener('keydown', (e) => {
@@ -3644,7 +3708,7 @@
       function shouldIgnoreDeckSwipe(target) {
         if (!target || !(target instanceof Element)) return false;
         return !!target.closest(
-          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .transit-option-card, .transit-options-list, #transitDetailCard-8, #transitDetailCard-24, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe, #drawerOverlay, #drawerSheet, .drawer-overlay, .drawer-sheet, .drawer-list, .drawer-slide-item, #deckDrawerTrigger, .header-brand'
+          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .transit-option-card, .transit-options-list, #transitDetailCard-8, #transitDetailCard-24, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe, #drawerOverlay, #drawerSheet, .drawer-overlay, .drawer-sheet, .drawer-list, .drawer-slide-item, #deckDrawerTrigger, .header-brand, .deck-header, .deck-footer, .nav-buttons, .nav-btn, .brand-drawer-badge, .brand-crest'
         );
       }
 
@@ -3688,7 +3752,7 @@
         }
       }
 
-      fullscreenBtn.addEventListener('click', toggleFullscreen);
+      bindTap(fullscreenBtn, toggleFullscreen);
 
       document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
@@ -4186,7 +4250,7 @@
       applyTheme(initialIdx >= 0 ? initialIdx : 0);
 
       if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
+        bindTap(themeBtn, () => {
           applyTheme(currentThemeIdx + 1);
         });
       }
@@ -4375,9 +4439,7 @@
       }
 
       if (deckDrawerTrigger) {
-        deckDrawerTrigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
+        bindTap(deckDrawerTrigger, (e) => {
           if (isDrawerOpen) {
             closeDrawer();
           } else {
@@ -4387,21 +4449,48 @@
       }
 
       if (drawerCloseBtn) {
-        drawerCloseBtn.addEventListener('click', (e) => {
-          e.preventDefault();
+        bindTap(drawerCloseBtn, (e) => {
           closeDrawer();
         });
       }
 
       if (drawerBackdrop) {
-        drawerBackdrop.addEventListener('click', (e) => {
-          e.preventDefault();
+        bindTap(drawerBackdrop, (e) => {
           closeDrawer();
         });
       }
 
-      // Delegate slide selection in drawer list
+      // Delegate slide selection in drawer list with touch scrolling protection
       if (drawerList) {
+        let listTouchStartY = 0;
+        let listTouchMoved = false;
+
+        drawerList.addEventListener('touchstart', (e) => {
+          listTouchMoved = false;
+          listTouchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        drawerList.addEventListener('touchmove', (e) => {
+          if (Math.abs(e.touches[0].clientY - listTouchStartY) > 8) {
+            listTouchMoved = true;
+          }
+        }, { passive: true });
+
+        drawerList.addEventListener('touchend', (e) => {
+          if (!listTouchMoved) {
+            const item = e.target.closest('.drawer-slide-item');
+            if (item) {
+              const idx = parseInt(item.getAttribute('data-index'), 10);
+              if (!isNaN(idx)) {
+                e.preventDefault();
+                e.stopPropagation();
+                goToSlide(idx);
+                closeDrawer();
+              }
+            }
+          }
+        });
+
         drawerList.addEventListener('click', (e) => {
           const item = e.target.closest('.drawer-slide-item');
           if (item) {
@@ -4440,7 +4529,7 @@
       }
 
       if (drawerSearchClear) {
-        drawerSearchClear.addEventListener('click', () => {
+        bindTap(drawerSearchClear, () => {
           currentDrawerSearch = '';
           if (drawerSearchInput) {
             drawerSearchInput.value = '';
@@ -4453,7 +4542,7 @@
 
       // Category filter pills handler
       if (drawerFilterPills) {
-        drawerFilterPills.addEventListener('click', (e) => {
+        bindTap(drawerFilterPills, (e) => {
           const pill = e.target.closest('.drawer-filter-pill');
           if (!pill) return;
           const filter = pill.getAttribute('data-filter') || 'all';
