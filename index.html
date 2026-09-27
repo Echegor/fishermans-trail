@@ -252,7 +252,45 @@
     .header-brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      background: none;
+      border: 1px solid transparent;
+      padding: 4px 10px 4px 6px;
+      border-radius: 999px;
+      cursor: pointer;
+      pointer-events: auto;
+      text-align: left;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .header-brand:hover, .header-brand:focus-visible {
+      background: var(--stat-bg);
+      border-color: var(--border-gold);
+    }
+    .header-brand:active {
+      transform: scale(0.96);
+    }
+    .brand-drawer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.70rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--terracotta-soft);
+      color: var(--gold-primary);
+      border: 1px solid var(--border-gold);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .header-brand:hover .brand-drawer-badge {
+      background: var(--gold-primary);
+      color: #ffffff;
     }
 
     .brand-crest {
@@ -883,6 +921,328 @@
     }
 
     /* =========================================================================
+       NAVIGATION DRAWER & SLIDE SELECTION SHEET (MOBILE & DESKTOP)
+       ========================================================================= */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .drawer-overlay.active {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+    }
+
+    /* Desktop Drawer: Refined Left Slide-out Catalog */
+    .drawer-sheet {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 480px;
+      max-width: 90vw;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-gold);
+      box-shadow: 25px 0 60px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+      overflow: hidden;
+    }
+    .drawer-overlay.active .drawer-sheet {
+      transform: translateX(0);
+    }
+
+    .drawer-drag-bar {
+      display: none;
+    }
+
+    .drawer-header {
+      padding: 1.2rem 1.6rem 0.9rem 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      flex-shrink: 0;
+    }
+    .drawer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.70rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .drawer-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text-title);
+      margin: 0;
+      line-height: 1.2;
+    }
+    .drawer-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--sand-light);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      outline: none;
+    }
+    .drawer-close-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      transform: scale(1.06);
+    }
+
+    .drawer-search-row {
+      padding: 0.8rem 1.4rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .drawer-search-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .drawer-search-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 0.9rem;
+      color: var(--sand-muted);
+      pointer-events: none;
+    }
+    .drawer-search-input {
+      width: 100%;
+      padding: 8px 36px 8px 36px;
+      background: var(--stat-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      color: var(--text-title);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .drawer-search-input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(180, 123, 44, 0.15);
+    }
+    .drawer-search-clear {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--sand-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .drawer-filter-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .drawer-filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+    .drawer-filter-pill {
+      white-space: nowrap;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.70rem;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--stat-bg);
+      color: var(--sand-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .drawer-filter-pill.active, .drawer-filter-pill:hover {
+      border-color: var(--gold-primary);
+      background: var(--gold-primary);
+      color: #ffffff;
+    }
+
+    .drawer-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.9rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .drawer-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .drawer-list::-webkit-scrollbar-thumb {
+      background: var(--border-gold);
+      border-radius: 4px;
+    }
+
+    .drawer-slide-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .drawer-slide-item:hover {
+      border-color: var(--gold-primary);
+      transform: translateX(4px);
+      background: var(--bg-card-hover);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+    .drawer-slide-item.active {
+      border-color: var(--gold-primary);
+      background: var(--terracotta-soft);
+      box-shadow: 0 4px 16px rgba(180, 123, 44, 0.12);
+    }
+    .drawer-slide-item.active .drawer-slide-num {
+      background: var(--gold-primary);
+      color: #ffffff;
+      border-color: var(--gold-primary);
+    }
+
+    .drawer-slide-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      background: var(--stat-bg);
+      border: 1px solid var(--border-gold);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .drawer-slide-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .drawer-slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .drawer-slide-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(180, 123, 44, 0.12);
+      color: var(--gold-primary);
+    }
+    .drawer-slide-tag[data-cat="trail"] { background: rgba(44, 159, 69, 0.14); color: #2c9f45; }
+    .drawer-slide-tag[data-cat="retreat"] { background: rgba(56, 120, 180, 0.14); color: #2979bb; }
+    .drawer-slide-tag[data-cat="dining"] { background: rgba(217, 83, 79, 0.14); color: #d9534f; }
+    .drawer-slide-tag[data-cat="transit"] { background: rgba(220, 130, 20, 0.14); color: #d97706; }
+    .drawer-slide-tag[data-cat="lisbon"] { background: rgba(139, 92, 246, 0.14); color: #8b5cf6; }
+    .drawer-slide-current-badge {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      letter-spacing: 0.06em;
+    }
+    .drawer-slide-title {
+      font-family: var(--font-serif);
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: var(--text-title);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+    .drawer-slide-desc {
+      font-size: 0.76rem;
+      color: var(--sand-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .drawer-slide-arrow {
+      color: var(--sand-muted);
+      font-size: 1.1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .drawer-slide-item:hover .drawer-slide-arrow {
+      color: var(--gold-primary);
+      transform: translateX(3px);
+    }
+    .drawer-slide-item.active .drawer-slide-arrow {
+      color: var(--gold-primary);
+    }
+
+    .drawer-footer {
+      padding: 0.75rem 1.4rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--stat-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--sand-muted);
+      flex-shrink: 0;
+    }
+
+    /* =========================================================================
        COMPREHENSIVE MOBILE & TABLET RESPONSIVE SYSTEM (< 900px)
        ========================================================================= */
     .mobile-slide-indicator {
@@ -948,11 +1308,81 @@
         backdrop-filter: blur(16px) !important;
         height: 48px !important;
       }
+      .header-brand {
+        padding: 4px 6px !important;
+        gap: 8px !important;
+      }
       .brand-title {
         display: none !important;
       }
+      .brand-drawer-badge {
+        display: inline-flex !important;
+        font-size: 0.65rem !important;
+        padding: 2px 7px !important;
+      }
       .header-controls {
         gap: 0.35rem !important;
+      }
+
+      /* Mobile Bottom-Sheet Navigation Drawer */
+      .drawer-sheet {
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        max-height: 88vh !important;
+        border-right: none !important;
+        border-top: 2px solid var(--border-gold) !important;
+        border-radius: 24px 24px 0 0 !important;
+        box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.45) !important;
+        transform: translateY(100%) !important;
+      }
+      .drawer-overlay.active .drawer-sheet {
+        transform: translateY(0) !important;
+      }
+      .drawer-drag-bar {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0 4px 0;
+        cursor: grab;
+      }
+      .drawer-drag-pill {
+        width: 44px;
+        height: 5px;
+        border-radius: 999px;
+        background: var(--sand-muted);
+        opacity: 0.45;
+      }
+      .drawer-header {
+        padding: 0.6rem 1.2rem 0.8rem 1.2rem !important;
+      }
+      .drawer-title {
+        font-size: 1.35rem !important;
+      }
+      .drawer-search-row {
+        padding: 0.6rem 1.2rem !important;
+      }
+      .drawer-list {
+        padding: 0.8rem 1.2rem !important;
+        gap: 6px !important;
+      }
+      .drawer-slide-item {
+        padding: 8px 10px !important;
+        gap: 10px !important;
+      }
+      .drawer-slide-num {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.82rem !important;
+      }
+      .drawer-slide-title {
+        font-size: 0.92rem !important;
+      }
+      .drawer-slide-desc {
+        font-size: 0.72rem !important;
       }
       #themeBtn {
         padding: 5px 8px !important;
@@ -1178,7 +1608,7 @@
         height: auto !important;
         overflow: visible !important;
       }
-      .viewport-ambient, .deck-header, .deck-footer, .header-controls, .nav-buttons, .progress-dots, .mobile-slide-indicator {
+      .viewport-ambient, .deck-header, .deck-footer, .header-controls, .nav-buttons, .progress-dots, .mobile-slide-indicator, .drawer-overlay, .brand-drawer-badge {
         display: none !important;
       }
       .deck-container {
@@ -1249,16 +1679,68 @@
 
     <!-- Top Navigation Header -->
     <header class="deck-header">
-      <div class="header-brand">
+      <button class="header-brand" id="deckDrawerTrigger" type="button" aria-label="Open Slide Navigation Sheet" title="Open Slide Index (List all 30 pages)">
         <div class="brand-crest"><div class="brand-crest-dot"></div></div>
         <div class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</div>
-      </div>
+        <span class="brand-drawer-badge">INDEX ▾</span>
+      </button>
       <div class="header-controls">
         <button class="btn-fs" id="themeBtn" title="Click to Cycle Color Scheme" style="border-color: var(--gold-primary); color: var(--gold-primary); font-weight: 700;">🎨 PALETTE: Porcelain & Slate</button>
         <div class="slide-counter" id="slideCounter">SLIDE 01 / 30</div>
         <button class="btn-fs" id="fullscreenBtn" title="Toggle Fullscreen">⛶ EXPAND</button>
       </div>
     </header>
+
+    <!-- Slide Navigation Drawer & Page Selection Sheet -->
+    <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true">
+      <div class="drawer-backdrop" id="drawerBackdrop" title="Close Directory"></div>
+      <aside class="drawer-sheet" id="drawerSheet" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+        <!-- Touch pull handle for mobile bottom-sheet -->
+        <div class="drawer-drag-bar" id="drawerDragBar" title="Swipe down to close">
+          <div class="drawer-drag-pill"></div>
+        </div>
+
+        <!-- Drawer Header -->
+        <div class="drawer-header">
+          <div class="drawer-header-text">
+            <div class="drawer-eyebrow">EXPEDITION DOSSIER • 30 MILESTONES</div>
+            <h3 class="drawer-title" id="drawerTitle">Slide Directory</h3>
+          </div>
+          <button class="drawer-close-btn" id="drawerCloseBtn" type="button" aria-label="Close Slide Directory" title="Close Directory">✕</button>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="drawer-search-row">
+          <div class="drawer-search-wrapper">
+            <span class="drawer-search-icon">🔍</span>
+            <input type="text" class="drawer-search-input" id="drawerSearchInput" placeholder="Search page number, stage, hotel, or town..." aria-label="Search slides" autocomplete="off" />
+            <button class="drawer-search-clear" id="drawerSearchClear" type="button" aria-label="Clear search" style="display: none;">✕</button>
+          </div>
+          <div class="drawer-filter-pills" id="drawerFilterPills">
+            <button class="drawer-filter-pill active" data-filter="all" type="button">All (30)</button>
+            <button class="drawer-filter-pill" data-filter="trail" type="button">Trail (11)</button>
+            <button class="drawer-filter-pill" data-filter="retreat" type="button">Lodging (6)</button>
+            <button class="drawer-filter-pill" data-filter="dining" type="button">Dining (4)</button>
+            <button class="drawer-filter-pill" data-filter="transit" type="button">Transit (5)</button>
+            <button class="drawer-filter-pill" data-filter="lisbon" type="button">Lisbon (4)</button>
+          </div>
+        </div>
+
+        <!-- Scrollable Slide Items List -->
+        <div class="drawer-list" id="drawerList">
+          <!-- Dynamically populated by JS from the 30 slide sections -->
+        </div>
+
+        <!-- Drawer Footer Stats -->
+        <div class="drawer-footer">
+          <div class="drawer-stat">93 KM COASTAL TREK</div>
+          <div class="drawer-stat">•</div>
+          <div class="drawer-stat">5 TRAIL STAGES</div>
+          <div class="drawer-stat">•</div>
+          <div class="drawer-stat">LISBON FINALE</div>
+        </div>
+      </aside>
+    </div>
 
     <!-- Slide Content Track (30 De-Cluttered, Large-Font Slides) -->
     <div class="slides-wrapper">
@@ -3082,6 +3564,10 @@
         try {
           history.replaceState(null, '', '#' + (currentIndex + 1));
         } catch(e) {}
+
+        if (typeof syncDrawerActiveState === 'function') {
+          syncDrawerActiveState();
+        }
       }
 
       function nextSlide() {
@@ -3158,7 +3644,7 @@
       function shouldIgnoreDeckSwipe(target) {
         if (!target || !(target instanceof Element)) return false;
         return !!target.closest(
-          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .transit-option-card, .transit-options-list, #transitDetailCard-8, #transitDetailCard-24, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe'
+          '#interactiveTrailSvg, #interactiveMapContainer, .interactive-trail-box, .waypoint-selector, .stage-pill, .map-node, #stageInspector, .route-selector, .route-selector-btn, .transit-option-card, .transit-options-list, #transitDetailCard-8, #transitDetailCard-24, .theme-toggle, button, a, input, select, textarea, [data-no-swipe], .no-swipe, #drawerOverlay, #drawerSheet, .drawer-overlay, .drawer-sheet, .drawer-list, .drawer-slide-item, #deckDrawerTrigger, .header-brand'
         );
       }
 
@@ -3704,6 +4190,327 @@
           applyTheme(currentThemeIdx + 1);
         });
       }
+
+      // =====================================================================
+      // SLIDE NAVIGATION DRAWER & PAGE SELECTION SHEET CONTROLLER
+      // =====================================================================
+      const deckDrawerTrigger = document.getElementById('deckDrawerTrigger');
+      const drawerOverlay = document.getElementById('drawerOverlay');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const drawerSheet = document.getElementById('drawerSheet');
+      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+      const drawerSearchInput = document.getElementById('drawerSearchInput');
+      const drawerSearchClear = document.getElementById('drawerSearchClear');
+      const drawerFilterPills = document.getElementById('drawerFilterPills');
+      const drawerList = document.getElementById('drawerList');
+      const drawerDragBar = document.getElementById('drawerDragBar');
+
+      // Classification taxonomy for all 30 slides
+      const slideMetaMap = {
+        1: { cat: ['all', 'overview'], primaryCat: 'overview', tag: 'COVER' },
+        2: { cat: ['all', 'overview'], primaryCat: 'overview', tag: 'OVERVIEW' },
+        3: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'MAP & GPS' },
+        4: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'WAYFINDING' },
+        5: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'SAFETY' },
+        6: { cat: ['all', 'transit'], primaryCat: 'transit', tag: 'FLIGHT' },
+        7: { cat: ['all', 'transit'], primaryCat: 'transit', tag: 'AIRPORT' },
+        8: { cat: ['all', 'transit'], primaryCat: 'transit', tag: 'TRANSIT' },
+        9: { cat: ['all', 'retreat'], primaryCat: 'retreat', tag: 'LODGING' },
+        10: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 01' },
+        11: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 01' },
+        12: { cat: ['all', 'retreat'], primaryCat: 'retreat', tag: 'LODGING' },
+        13: { cat: ['all', 'dining'], primaryCat: 'dining', tag: 'DINING' },
+        14: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 02' },
+        15: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'FERRY' },
+        16: { cat: ['all', 'retreat'], primaryCat: 'retreat', tag: 'LODGING' },
+        17: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 03' },
+        18: { cat: ['all', 'dining'], primaryCat: 'dining', tag: 'FEAST' },
+        19: { cat: ['all', 'retreat'], primaryCat: 'retreat', tag: 'LODGING' },
+        20: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 04' },
+        21: { cat: ['all', 'retreat'], primaryCat: 'retreat', tag: 'LODGING' },
+        22: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'STAGE 05' },
+        23: { cat: ['all', 'dining'], primaryCat: 'dining', tag: 'CELEBRATION' },
+        24: { cat: ['all', 'transit'], primaryCat: 'transit', tag: 'TRANSIT' },
+        25: { cat: ['all', 'retreat', 'lisbon'], primaryCat: 'lisbon', tag: 'LISBON HOTEL' },
+        26: { cat: ['all', 'lisbon'], primaryCat: 'lisbon', tag: 'OLD ALFAMA' },
+        27: { cat: ['all', 'dining', 'lisbon'], primaryCat: 'lisbon', tag: 'TAGUS & DINE' },
+        28: { cat: ['all', 'transit', 'lisbon'], primaryCat: 'transit', tag: 'DEPARTURE' },
+        29: { cat: ['all', 'overview'], primaryCat: 'overview', tag: 'BUDGET' },
+        30: { cat: ['all', 'trail'], primaryCat: 'trail', tag: 'GEAR & SOS' }
+      };
+
+      // Extract slide metadata dynamically from DOM
+      const slideDirectoryData = slides.map((slideEl, index) => {
+        const slideNum = index + 1;
+        const eyebrowEl = slideEl.querySelector('.slide-eyebrow');
+        const titleEl = slideEl.querySelector('.slide-title');
+        const subtitleEl = slideEl.querySelector('.slide-subtitle');
+
+        const eyebrow = eyebrowEl ? eyebrowEl.textContent.trim().replace(/\s+/g, ' ') : `Milestone ${slideNum}`;
+        const title = titleEl ? titleEl.textContent.trim().replace(/\s+/g, ' ') : `Slide ${slideNum}`;
+        const subtitle = subtitleEl ? subtitleEl.textContent.trim().replace(/\s+/g, ' ') : '';
+
+        const meta = slideMetaMap[slideNum] || { cat: ['all'], primaryCat: 'overview', tag: `SLIDE ${slideNum}` };
+
+        return {
+          index,
+          num: slideNum,
+          formattedNum: String(slideNum).padStart(2, '0'),
+          eyebrow,
+          title,
+          subtitle,
+          categories: meta.cat,
+          primaryCat: meta.primaryCat,
+          tag: meta.tag
+        };
+      });
+
+      let currentDrawerFilter = 'all';
+      let currentDrawerSearch = '';
+      let isDrawerOpen = false;
+
+      function renderDrawerItems() {
+        if (!drawerList) return;
+
+        const term = currentDrawerSearch.toLowerCase().trim();
+        const filtered = slideDirectoryData.filter(item => {
+          // Category filter
+          if (currentDrawerFilter !== 'all' && !item.categories.includes(currentDrawerFilter)) {
+            return false;
+          }
+          // Search query
+          if (term) {
+            const numStr = String(item.num);
+            const formattedStr = item.formattedNum;
+            const titleMatch = item.title.toLowerCase().includes(term);
+            const eyebrowMatch = item.eyebrow.toLowerCase().includes(term);
+            const subtitleMatch = item.subtitle.toLowerCase().includes(term);
+            const tagMatch = item.tag.toLowerCase().includes(term);
+            const numMatch = numStr === term || formattedStr === term || `slide ${numStr}`.includes(term) || `page ${numStr}`.includes(term);
+            if (!titleMatch && !eyebrowMatch && !subtitleMatch && !tagMatch && !numMatch) {
+              return false;
+            }
+          }
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          drawerList.innerHTML = `
+            <div style="padding: 2.5rem 1rem; text-align: center; color: var(--sand-muted);">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.7;">🔍</div>
+              <div style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--text-title); margin-bottom: 0.35rem;">No Milestones Found</div>
+              <div style="font-size: 0.82rem; font-family: var(--font-sans);">No slides match "${currentDrawerSearch}". Try searching by page number, stage, or town.</div>
+            </div>
+          `;
+          return;
+        }
+
+        drawerList.innerHTML = filtered.map(item => {
+          const isActive = item.index === currentIndex;
+          return `
+            <div class="drawer-slide-item ${isActive ? 'active' : ''}" data-index="${item.index}" role="button" tabindex="0" aria-label="Jump to Slide ${item.num}: ${item.title}">
+              <div class="drawer-slide-num">${item.formattedNum}</div>
+              <div class="drawer-slide-content">
+                <div class="drawer-slide-meta">
+                  <span class="drawer-slide-tag" data-cat="${item.primaryCat}">${item.tag}</span>
+                  ${isActive ? '<span class="drawer-slide-current-badge">● CURRENT</span>' : ''}
+                </div>
+                <div class="drawer-slide-title">${item.title}</div>
+                ${item.subtitle ? `<div class="drawer-slide-desc">${item.subtitle}</div>` : ''}
+              </div>
+              <div class="drawer-slide-arrow" aria-hidden="true">→</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function syncDrawerActiveState(shouldScroll = false) {
+        if (!drawerList) return;
+        const items = drawerList.querySelectorAll('.drawer-slide-item');
+        items.forEach(el => {
+          const idx = parseInt(el.getAttribute('data-index'), 10);
+          const isActive = idx === currentIndex;
+          el.classList.toggle('active', isActive);
+          const metaEl = el.querySelector('.drawer-slide-meta');
+          let currentBadge = el.querySelector('.drawer-slide-current-badge');
+          if (isActive) {
+            if (!currentBadge && metaEl) {
+              const badge = document.createElement('span');
+              badge.className = 'drawer-slide-current-badge';
+              badge.textContent = '● CURRENT';
+              metaEl.appendChild(badge);
+            }
+          } else if (currentBadge) {
+            currentBadge.remove();
+          }
+        });
+
+        if (shouldScroll && isDrawerOpen) {
+          const activeEl = drawerList.querySelector('.drawer-slide-item.active');
+          if (activeEl) {
+            activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
+      }
+
+      function openDrawer() {
+        if (!drawerOverlay) return;
+        isDrawerOpen = true;
+        drawerOverlay.classList.add('active');
+        drawerOverlay.setAttribute('aria-hidden', 'false');
+        renderDrawerItems();
+        setTimeout(() => {
+          syncDrawerActiveState(true);
+        }, 120);
+      }
+
+      function closeDrawer() {
+        if (!drawerOverlay) return;
+        isDrawerOpen = false;
+        drawerOverlay.classList.remove('active');
+        drawerOverlay.setAttribute('aria-hidden', 'true');
+        if (drawerSearchInput) {
+          drawerSearchInput.blur();
+        }
+      }
+
+      if (deckDrawerTrigger) {
+        deckDrawerTrigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isDrawerOpen) {
+            closeDrawer();
+          } else {
+            openDrawer();
+          }
+        });
+      }
+
+      if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeDrawer();
+        });
+      }
+
+      if (drawerBackdrop) {
+        drawerBackdrop.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeDrawer();
+        });
+      }
+
+      // Delegate slide selection in drawer list
+      if (drawerList) {
+        drawerList.addEventListener('click', (e) => {
+          const item = e.target.closest('.drawer-slide-item');
+          if (item) {
+            const idx = parseInt(item.getAttribute('data-index'), 10);
+            if (!isNaN(idx)) {
+              goToSlide(idx);
+              closeDrawer();
+            }
+          }
+        });
+
+        drawerList.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            const item = e.target.closest('.drawer-slide-item');
+            if (item) {
+              e.preventDefault();
+              const idx = parseInt(item.getAttribute('data-index'), 10);
+              if (!isNaN(idx)) {
+                goToSlide(idx);
+                closeDrawer();
+              }
+            }
+          }
+        });
+      }
+
+      // Search input handler
+      if (drawerSearchInput) {
+        drawerSearchInput.addEventListener('input', (e) => {
+          currentDrawerSearch = e.target.value;
+          if (drawerSearchClear) {
+            drawerSearchClear.style.display = currentDrawerSearch ? 'block' : 'none';
+          }
+          renderDrawerItems();
+        });
+      }
+
+      if (drawerSearchClear) {
+        drawerSearchClear.addEventListener('click', () => {
+          currentDrawerSearch = '';
+          if (drawerSearchInput) {
+            drawerSearchInput.value = '';
+            drawerSearchInput.focus();
+          }
+          drawerSearchClear.style.display = 'none';
+          renderDrawerItems();
+        });
+      }
+
+      // Category filter pills handler
+      if (drawerFilterPills) {
+        drawerFilterPills.addEventListener('click', (e) => {
+          const pill = e.target.closest('.drawer-filter-pill');
+          if (!pill) return;
+          const filter = pill.getAttribute('data-filter') || 'all';
+          currentDrawerFilter = filter;
+          drawerFilterPills.querySelectorAll('.drawer-filter-pill').forEach(btn => {
+            btn.classList.toggle('active', btn === pill);
+          });
+          renderDrawerItems();
+        });
+      }
+
+      // Close on Escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isDrawerOpen) {
+          closeDrawer();
+        }
+      });
+
+      // Mobile Touch Drag to Dismiss bottom sheet
+      let drawerTouchStartY = 0;
+      let drawerTouchCurrentY = 0;
+      let isDraggingDrawer = false;
+
+      if (drawerSheet) {
+        drawerSheet.addEventListener('touchstart', (e) => {
+          const isAtTop = drawerList ? drawerList.scrollTop <= 2 : true;
+          const isDragBar = !!e.target.closest('.drawer-drag-bar, .drawer-header');
+          if (isDragBar || isAtTop) {
+            drawerTouchStartY = e.touches[0].clientY;
+            isDraggingDrawer = true;
+          }
+        }, { passive: true });
+
+        drawerSheet.addEventListener('touchmove', (e) => {
+          if (!isDraggingDrawer) return;
+          drawerTouchCurrentY = e.touches[0].clientY;
+          const diffY = drawerTouchCurrentY - drawerTouchStartY;
+          if (diffY > 0 && window.innerWidth <= 900) {
+            drawerSheet.style.transform = `translateY(${diffY}px)`;
+          }
+        }, { passive: true });
+
+        drawerSheet.addEventListener('touchend', () => {
+          if (!isDraggingDrawer) return;
+          isDraggingDrawer = false;
+          const diffY = drawerTouchCurrentY - drawerTouchStartY;
+          drawerSheet.style.transform = '';
+          if (diffY > 80 && window.innerWidth <= 900) {
+            closeDrawer();
+          }
+          drawerTouchStartY = 0;
+          drawerTouchCurrentY = 0;
+        }, { passive: true });
+      }
+
+      // Initial render
+      renderDrawerItems();
 
     })();
   </script>
