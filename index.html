@@ -252,6 +252,15 @@
       backdrop-filter: blur(14px);
     }
 
+    .brand-nav-container, .mobile-slide-indicator-container {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .native-slide-select {
+      display: none;
+    }
+
     .header-brand {
       display: flex;
       align-items: center;
@@ -1322,13 +1331,35 @@
         pointer-events: auto !important;
         z-index: 500 !important;
       }
+      .brand-nav-container, .mobile-slide-indicator-container {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+      .native-slide-select {
+        display: block !important;
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        opacity: 0.001 !important;
+        cursor: pointer !important;
+        z-index: 9999 !important;
+        border: none !important;
+        background: transparent !important;
+        color: transparent !important;
+        -webkit-appearance: menulist !important;
+        appearance: menulist !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+      }
       .header-brand {
         display: inline-flex !important;
         align-items: center !important;
         padding: 6px 10px !important;
         gap: 8px !important;
         pointer-events: auto !important;
-        touch-action: none !important;
+        touch-action: manipulation !important;
         cursor: pointer !important;
         -webkit-tap-highlight-color: rgba(180, 123, 44, 0.2) !important;
         user-select: none !important;
@@ -1462,7 +1493,7 @@
         border-radius: 999px;
         cursor: pointer;
         pointer-events: auto !important;
-        touch-action: none !important;
+        touch-action: manipulation !important;
         user-select: none !important;
         -webkit-user-select: none !important;
         -webkit-tap-highlight-color: rgba(180, 123, 44, 0.2);
@@ -1743,11 +1774,46 @@
 
     <!-- Top Navigation Header -->
     <header class="deck-header">
-      <button class="header-brand" id="deckDrawerTrigger" type="button" aria-label="Open Slide Navigation Sheet" title="Open Slide Index (List all 30 pages)">
-        <span class="brand-crest"><span class="brand-crest-dot"></span></span>
-        <span class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</span>
-        <span class="brand-drawer-badge">INDEX ▾</span>
-      </button>
+      <div class="brand-nav-container">
+        <button class="header-brand" id="deckDrawerTrigger" type="button" aria-label="Open Slide Navigation Sheet" title="Open Slide Index (List all 30 pages)">
+          <span class="brand-crest"><span class="brand-crest-dot"></span></span>
+          <span class="brand-title">Fisherman’s Trail & Lisbon Master Expedition</span>
+          <span class="brand-drawer-badge">INDEX ▾</span>
+        </button>
+        <!-- Built-in Native Mobile Dropdown Component (triggers native Android / iOS system bottom sheet) -->
+        <select class="native-slide-select" id="nativeSlidePicker" onchange="window.goToSlide(parseInt(this.value, 10))" title="Quick Jump to Slide" aria-label="Quick Jump to Slide">
+          <option value="0">Slide 01 • The Fisherman’s Trail & Lisbon</option>
+          <option value="1">Slide 02 • Strategic Overview & Philosophy</option>
+          <option value="2">Slide 03 • Master Itinerary & Stages</option>
+          <option value="3">Slide 04 • Route Topography & Profile</option>
+          <option value="4">Slide 05 • Coastal Weather & Ocean Climate</option>
+          <option value="5">Slide 06 • Flight Logistics (UA 64 / TP 103)</option>
+          <option value="6">Slide 07 • Lisbon Arrival & Cascais Layover</option>
+          <option value="7">Slide 08 • Transit to Porto Covo (Rede Expressos)</option>
+          <option value="8">Slide 09 • Porto Covo Lodging (Moinho da Asneira)</option>
+          <option value="9">Slide 10 • Stage 1: Porto Covo to Milfontes (20 km)</option>
+          <option value="10">Slide 11 • Stage 1 Highlights: Dunes & Pessegueiro</option>
+          <option value="11">Slide 12 • Milfontes Lodging (Herdade do Freixial)</option>
+          <option value="12">Slide 13 • Dining: Tasca do Celso</option>
+          <option value="13">Slide 14 • Stage 2: Milfontes to Almograve (15 km)</option>
+          <option value="14">Slide 15 • Mira River Ferry Crossing Logistics</option>
+          <option value="15">Slide 16 • Almograve Lodging (Herdade do Touril)</option>
+          <option value="16">Slide 17 • Stage 3: Almograve to Zambujeira (22 km)</option>
+          <option value="17">Slide 18 • Dining: O Sacas & Coastal Feast</option>
+          <option value="18">Slide 19 • Zambujeira Lodging (Monte do Papa Léguas)</option>
+          <option value="19">Slide 20 • Stage 4: Zambujeira to Odeceixe (18 km)</option>
+          <option value="20">Slide 21 • Odeceixe Lodging (Casas do Moinho)</option>
+          <option value="21">Slide 22 • Stage 5: Odeceixe to Aljezur (18 km)</option>
+          <option value="22">Slide 23 • Dining: Pont’a Pé Celebration</option>
+          <option value="23">Slide 24 • Transit to Lisbon via Rede Expressos</option>
+          <option value="24">Slide 25 • Lisbon Luxury Lodging: Bairro Alto Hotel</option>
+          <option value="25">Slide 26 • Lisbon Day 1: Historic Alfama & Miradouros</option>
+          <option value="26">Slide 27 • Lisbon Day 2: Belém, Tagus River & Dining</option>
+          <option value="27">Slide 28 • Departure Logistics: LIS Airport Protocol</option>
+          <option value="28">Slide 29 • Expedition Budget & Cost Breakdown</option>
+          <option value="29">Slide 30 • Master Packing List & Safety Checklist</option>
+        </select>
+      </div>
       <div class="header-controls">
         <button class="btn-fs" id="themeBtn" title="Click to Cycle Color Scheme" style="border-color: var(--gold-primary); color: var(--gold-primary); font-weight: 700;">🎨 PALETTE: Porcelain & Slate</button>
         <div class="slide-counter" id="slideCounter">SLIDE 01 / 30</div>
@@ -3565,11 +3631,45 @@
       <div class="progress-dots" id="dotsContainer">
         <!-- 30 Dots dynamically generated -->
       </div>
-      <button class="mobile-slide-indicator" id="mobileSlideIndicator" type="button" title="Open Slide Directory">SLIDE 01 / 30 ▾</button>
+      <div class="mobile-slide-indicator-container">
+        <button class="mobile-slide-indicator" id="mobileSlideIndicator" type="button" title="Open Slide Directory">SLIDE 01 / 30 ▾</button>
+        <select class="native-slide-select" id="footerSlidePicker" onchange="window.goToSlide(parseInt(this.value, 10))" title="Quick Jump to Slide" aria-label="Quick Jump to Slide">
+          <option value="0">Slide 01 • The Fisherman’s Trail & Lisbon</option>
+          <option value="1">Slide 02 • Strategic Overview & Philosophy</option>
+          <option value="2">Slide 03 • Master Itinerary & Stages</option>
+          <option value="3">Slide 04 • Route Topography & Profile</option>
+          <option value="4">Slide 05 • Coastal Weather & Ocean Climate</option>
+          <option value="5">Slide 06 • Flight Logistics (UA 64 / TP 103)</option>
+          <option value="6">Slide 07 • Lisbon Arrival & Cascais Layover</option>
+          <option value="7">Slide 08 • Transit to Porto Covo (Rede Expressos)</option>
+          <option value="8">Slide 09 • Porto Covo Lodging (Moinho da Asneira)</option>
+          <option value="9">Slide 10 • Stage 1: Porto Covo to Milfontes (20 km)</option>
+          <option value="10">Slide 11 • Stage 1 Highlights: Dunes & Pessegueiro</option>
+          <option value="11">Slide 12 • Milfontes Lodging (Herdade do Freixial)</option>
+          <option value="12">Slide 13 • Dining: Tasca do Celso</option>
+          <option value="13">Slide 14 • Stage 2: Milfontes to Almograve (15 km)</option>
+          <option value="14">Slide 15 • Mira River Ferry Crossing Logistics</option>
+          <option value="15">Slide 16 • Almograve Lodging (Herdade do Touril)</option>
+          <option value="16">Slide 17 • Stage 3: Almograve to Zambujeira (22 km)</option>
+          <option value="17">Slide 18 • Dining: O Sacas & Coastal Feast</option>
+          <option value="18">Slide 19 • Zambujeira Lodging (Monte do Papa Léguas)</option>
+          <option value="19">Slide 20 • Stage 4: Zambujeira to Odeceixe (18 km)</option>
+          <option value="20">Slide 21 • Odeceixe Lodging (Casas do Moinho)</option>
+          <option value="21">Slide 22 • Stage 5: Odeceixe to Aljezur (18 km)</option>
+          <option value="22">Slide 23 • Dining: Pont’a Pé Celebration</option>
+          <option value="23">Slide 24 • Transit to Lisbon via Rede Expressos</option>
+          <option value="24">Slide 25 • Lisbon Luxury Lodging: Bairro Alto Hotel</option>
+          <option value="25">Slide 26 • Lisbon Day 1: Historic Alfama & Miradouros</option>
+          <option value="26">Slide 27 • Lisbon Day 2: Belém, Tagus River & Dining</option>
+          <option value="27">Slide 28 • Departure Logistics: LIS Airport Protocol</option>
+          <option value="28">Slide 29 • Expedition Budget & Cost Breakdown</option>
+          <option value="29">Slide 30 • Master Packing List & Safety Checklist</option>
+        </select>
+      </div>
       
       <div class="nav-buttons">
-        <button class="nav-btn" id="prevBtn" type="button" title="Previous Slide (←)">‹</button>
-        <button class="nav-btn" id="nextBtn" type="button" title="Next Slide (→ or Space)">›</button>
+        <button class="nav-btn" id="prevBtn" type="button" onclick="window.prevSlide && window.prevSlide()" title="Previous Slide (←)" aria-label="Previous Slide">‹</button>
+        <button class="nav-btn" id="nextBtn" type="button" onclick="window.nextSlide && window.nextSlide()" title="Next Slide (→ or Space)" aria-label="Next Slide">›</button>
       </div>
     </footer>
 
@@ -3671,6 +3771,12 @@
           mobileSlideIndicator.textContent = `SLIDE ${formattedCurrent} / ${formattedTotal} ▾`;
         }
 
+        // Synchronize built-in native mobile select components
+        const topPicker = document.getElementById('nativeSlidePicker');
+        if (topPicker) topPicker.value = String(currentIndex);
+        const footerPicker = document.getElementById('footerSlidePicker');
+        if (footerPicker) footerPicker.value = String(currentIndex);
+
         // Reset scroll position on current slide so user starts at the top
         slides[currentIndex].scrollTop = 0;
         
@@ -3737,8 +3843,20 @@
       });
 
       // Event Listeners with guaranteed touch and click response
-      bindTap(nextBtn, nextSlide);
-      bindTap(prevBtn, prevSlide);
+      if (nextBtn) {
+        bindTap(nextBtn, nextSlide);
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          nextSlide();
+        });
+      }
+      if (prevBtn) {
+        bindTap(prevBtn, prevSlide);
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          prevSlide();
+        });
+      }
       const mobileSlideIndicatorBtn = document.getElementById('mobileSlideIndicator');
       if (mobileSlideIndicatorBtn) {
         bindTap(mobileSlideIndicatorBtn, () => {
