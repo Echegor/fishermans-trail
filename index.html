@@ -3865,21 +3865,44 @@
       }
       const dots = Array.from(dotsContainer.children);
 
+      // Drawer DOM Elements (declared up-front to eliminate TDZ ReferenceError)
+      const deckDrawerTrigger = document.getElementById('deckDrawerTrigger');
+      const drawerOverlay = document.getElementById('drawerOverlay');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const drawerSheet = document.getElementById('drawerSheet');
+      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+      const drawerSearchInput = document.getElementById('drawerSearchInput');
+      const drawerSearchClear = document.getElementById('drawerSearchClear');
+      const drawerFilterPills = document.getElementById('drawerFilterPills');
+      const drawerList = document.getElementById('drawerList');
+      const drawerDragBar = document.getElementById('drawerDragBar');
+      let isDrawerOpen = false;
+
       function updateSlide(index) {
         if (index < 0 || index >= totalSlides) return;
         
-        slides[currentIndex].classList.remove('active');
-        dots[currentIndex].classList.remove('active');
+        try {
+          if (slides[currentIndex]) slides[currentIndex].classList.remove('active');
+        } catch(e) {}
+        try {
+          if (dots && dots[currentIndex]) dots[currentIndex].classList.remove('active');
+        } catch(e) {}
         
         currentIndex = index;
         
-        slides[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
+        try {
+          if (slides[currentIndex]) slides[currentIndex].classList.add('active');
+        } catch(e) {}
+        try {
+          if (dots && dots[currentIndex]) dots[currentIndex].classList.add('active');
+        } catch(e) {}
         
         // Update header counter format "SLIDE 01 / 30"
         const formattedCurrent = String(currentIndex + 1).padStart(2, '0');
         const formattedTotal = String(totalSlides).padStart(2, '0');
-        slideCounter.textContent = `SLIDE ${formattedCurrent} / ${formattedTotal}`;
+        if (slideCounter) {
+          slideCounter.textContent = `SLIDE ${formattedCurrent} / ${formattedTotal}`;
+        }
 
         const mobileSlideIndicator = document.getElementById('mobileSlideIndicator');
         if (mobileSlideIndicator) {
@@ -3892,27 +3915,33 @@
         }
 
         // Synchronize built-in native mobile select components
-        const topPicker = document.getElementById('nativeSlidePicker');
-        if (topPicker) topPicker.value = String(currentIndex);
-        const footerPicker = document.getElementById('footerSlidePicker');
-        if (footerPicker) footerPicker.value = String(currentIndex);
+        try {
+          const topPicker = document.getElementById('nativeSlidePicker');
+          if (topPicker) topPicker.value = String(currentIndex);
+          const footerPicker = document.getElementById('footerSlidePicker');
+          if (footerPicker) footerPicker.value = String(currentIndex);
+        } catch(e) {}
 
         // Reset scroll position on current slide so user starts at the top
-        slides[currentIndex].scrollTop = 0;
+        try {
+          if (slides[currentIndex]) slides[currentIndex].scrollTop = 0;
+        } catch(e) {}
         
         try {
           history.replaceState(null, '', '#' + (currentIndex + 1));
         } catch(e) {}
 
-        if (typeof syncDrawerActiveState === 'function') {
-          syncDrawerActiveState();
-        }
+        try {
+          if (typeof syncDrawerActiveState === 'function') {
+            syncDrawerActiveState();
+          }
+        } catch(e) {}
       }
 
       let lastSlideChangeTime = 0;
       function nextSlide() {
         const now = Date.now();
-        if (now - lastSlideChangeTime < 260) return;
+        if (now - lastSlideChangeTime < 200) return;
         lastSlideChangeTime = now;
         if (currentIndex < totalSlides - 1) {
           updateSlide(currentIndex + 1);
@@ -3923,7 +3952,7 @@
 
       function prevSlide() {
         const now = Date.now();
-        if (now - lastSlideChangeTime < 260) return;
+        if (now - lastSlideChangeTime < 200) return;
         lastSlideChangeTime = now;
         if (currentIndex > 0) {
           updateSlide(currentIndex - 1);
@@ -3941,19 +3970,6 @@
       window.prevSlide = prevSlide;
       window.goToSlide = goToSlide;
 
-      // Check URL hash on initial load
-      const initialSlideFromHash = (function() {
-        const hash = window.location.hash.replace('#', '');
-        const num = parseInt(hash, 10);
-        if (!isNaN(num) && num >= 1 && num <= totalSlides) {
-          return num - 1;
-        }
-        return 0;
-      })();
-      if (initialSlideFromHash > 0) {
-        updateSlide(initialSlideFromHash);
-      }
-
       window.addEventListener('hashchange', () => {
         const hash = window.location.hash.replace('#', '');
         const num = parseInt(hash, 10);
@@ -3965,17 +3981,9 @@
       // Event Listeners with guaranteed touch and click response
       if (nextBtn) {
         bindTap(nextBtn, nextSlide);
-        nextBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          nextSlide();
-        });
       }
       if (prevBtn) {
         bindTap(prevBtn, prevSlide);
-        prevBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          prevSlide();
-        });
       }
       const mobileSlideIndicatorBtn = document.getElementById('mobileSlideIndicator');
       if (mobileSlideIndicatorBtn) {
@@ -3986,24 +3994,73 @@
         });
       }
 
-      // Keyboard arrow & spacebar navigation
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space') {
+      // Bulletproof cross-platform, capture-phase keyboard navigation
+      let lastKeyEventTime = 0;
+      let lastKeyHandled = '';
+      function handleDeckKeyDown(e) {
+        const tag = e.target && e.target.tagName ? e.target.tagName.toUpperCase() : '';
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) {
+          return;
+        }
+
+        const key = e.key || '';
+        const code = e.code || '';
+        const keyCode = e.keyCode || e.which || 0;
+
+        const now = Date.now();
+        const eventId = `${key}_${code}_${keyCode}`;
+        if (now - lastKeyEventTime < 80 && lastKeyHandled === eventId) {
+          return;
+        }
+
+        const isNext = (
+          key === 'ArrowRight' || key === 'Right' ||
+          code === 'ArrowRight' || keyCode === 39 ||
+          key === ' ' || code === 'Space' || keyCode === 32 ||
+          key === 'PageDown' || keyCode === 34 ||
+          key === 'n' || key === 'N'
+        );
+
+        const isPrev = (
+          key === 'ArrowLeft' || key === 'Left' ||
+          code === 'ArrowLeft' || keyCode === 37 ||
+          key === 'PageUp' || keyCode === 33 ||
+          key === 'p' || key === 'P'
+        );
+
+        if (isNext) {
           e.preventDefault();
+          lastKeyEventTime = now;
+          lastKeyHandled = eventId;
+          if (document.activeElement && typeof document.activeElement.blur === 'function') {
+            document.activeElement.blur();
+          }
           nextSlide();
-        } else if (e.key === 'ArrowLeft') {
+        } else if (isPrev) {
           e.preventDefault();
+          lastKeyEventTime = now;
+          lastKeyHandled = eventId;
+          if (document.activeElement && typeof document.activeElement.blur === 'function') {
+            document.activeElement.blur();
+          }
           prevSlide();
-        } else if (e.key === 'Home') {
+        } else if (key === 'Home' || keyCode === 36) {
           e.preventDefault();
+          lastKeyEventTime = now;
+          lastKeyHandled = eventId;
           goToSlide(0);
-        } else if (e.key === 'End') {
+        } else if (key === 'End' || keyCode === 35) {
           e.preventDefault();
+          lastKeyEventTime = now;
+          lastKeyHandled = eventId;
           goToSlide(totalSlides - 1);
-        } else if (e.key.toLowerCase() === 'f') {
+        } else if ((key.toLowerCase() === 'f' || keyCode === 70) && !e.metaKey && !e.ctrlKey && !e.altKey) {
           toggleFullscreen();
         }
-      });
+      }
+
+      window.addEventListener('keydown', handleDeckKeyDown, true);
+      document.addEventListener('keydown', handleDeckKeyDown, true);
 
       // Touch / Swipe Support (tuned for mobile vertical scrolling & interactive widgets)
       let touchStartX = 0;
@@ -4564,16 +4621,6 @@
       // =====================================================================
       // SLIDE NAVIGATION DRAWER & PAGE SELECTION SHEET CONTROLLER
       // =====================================================================
-      const deckDrawerTrigger = document.getElementById('deckDrawerTrigger');
-      const drawerOverlay = document.getElementById('drawerOverlay');
-      const drawerBackdrop = document.getElementById('drawerBackdrop');
-      const drawerSheet = document.getElementById('drawerSheet');
-      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-      const drawerSearchInput = document.getElementById('drawerSearchInput');
-      const drawerSearchClear = document.getElementById('drawerSearchClear');
-      const drawerFilterPills = document.getElementById('drawerFilterPills');
-      const drawerList = document.getElementById('drawerList');
-      const drawerDragBar = document.getElementById('drawerDragBar');
 
       // Classification taxonomy for all 30 slides
       const slideMetaMap = {
@@ -4637,7 +4684,6 @@
 
       let currentDrawerFilter = 'all';
       let currentDrawerSearch = '';
-      let isDrawerOpen = false;
 
       function renderDrawerItems() {
         if (!drawerList) return;
@@ -4918,8 +4964,25 @@
         }, { passive: true });
       }
 
-      // Initial render
-      renderDrawerItems();
+      // Initial render of drawer
+      try {
+        renderDrawerItems();
+      } catch(e) {
+        console.warn('Drawer render error:', e);
+      }
+
+      // Check URL hash on initial load AFTER all DOM elements, functions, and listeners are fully bound
+      const initialSlideFromHash = (function() {
+        const hash = window.location.hash.replace('#', '');
+        const num = parseInt(hash, 10);
+        if (!isNaN(num) && num >= 1 && num <= totalSlides) {
+          return num - 1;
+        }
+        return 0;
+      })();
+      if (initialSlideFromHash > 0) {
+        updateSlide(initialSlideFromHash);
+      }
 
     })();
   </script>
